@@ -36,6 +36,7 @@ body {
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -76,6 +77,8 @@ img {
   right: 0;
   left: 0;
   z-index: 30;
+  background: rgba(24, 16, 32, 0.28);
+  backdrop-filter: blur(2px);
   color: #ffffff;
   transition:
     background 220ms ease,
@@ -85,25 +88,29 @@ img {
 }
 
 .site-header--scrolled {
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--brand-dark);
-  box-shadow: 0 12px 40px rgba(36, 23, 47, 0.12);
+  background: rgba(36, 23, 47, 0.9);
+  color: #ffffff;
+  box-shadow: 0 12px 40px rgba(15, 10, 20, 0.22);
   backdrop-filter: blur(16px);
 }
 
+.site-header .container {
+  width: min(100% - 24px, 1380px);
+}
+
 .header-inner {
-  min-height: 78px;
+  min-height: 98px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 18px;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
   gap: 11px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0;
   white-space: nowrap;
@@ -123,30 +130,52 @@ img {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 6px;
   margin-left: auto;
 }
 
-.desktop-nav a {
+.nav-pill {
+  display: inline-flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  padding: 0 10px;
   font-size: 13px;
-  font-weight: 700;
-  opacity: 0.88;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
   transition:
+    background 180ms ease,
+    border-color 180ms ease,
     color 180ms ease,
-    opacity 180ms ease;
+    box-shadow 180ms ease,
+    transform 180ms ease;
 }
 
-.desktop-nav a:hover {
-  color: var(--accent-gold);
-  opacity: 1;
+.nav-pill:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.nav-pill:active {
+  border-color: rgba(118, 17, 95, 0.72);
+  background: var(--brand-primary);
+  box-shadow: 0 10px 24px rgba(118, 17, 95, 0.24);
 }
 
 .header-actions {
   position: relative;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .language {
@@ -160,12 +189,12 @@ img {
   align-items: center;
   justify-content: center;
   min-height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
   color: inherit;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   gap: 7px;
   transition:
     background 180ms ease,
@@ -174,18 +203,32 @@ img {
 }
 
 .language-trigger {
-  padding: 0 11px;
+  padding: 0 14px;
 }
 
 .whatsapp-link {
-  padding: 0 13px;
+  padding: 0 11px;
 }
 
-.site-header--scrolled .language-trigger,
-.site-header--scrolled .whatsapp-link,
-.site-header--scrolled .mobile-menu-button {
-  border-color: rgba(36, 23, 47, 0.12);
-  background: rgba(118, 17, 95, 0.06);
+.language-trigger-open,
+.language-trigger:hover,
+.whatsapp-link:hover,
+.mobile-menu-button:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.language-chevron {
+  transition: transform 180ms ease;
+}
+
+.language-trigger-open .language-chevron {
+  transform: rotate(180deg);
+}
+
+.header-book {
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 .language-trigger:hover,
@@ -196,30 +239,48 @@ img {
 
 .language-menu {
   position: absolute;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   right: 0;
-  min-width: 92px;
+  z-index: 50;
+  min-width: 160px;
   padding: 8px;
   border: 1px solid var(--border-soft);
-  border-radius: 12px;
+  border-radius: 14px;
   background: #ffffff;
-  box-shadow: var(--shadow-card);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
   color: var(--brand-dark);
 }
 
-.language-menu button {
+.language-option {
+  display: flex;
   width: 100%;
-  min-height: 36px;
+  align-items: center;
+  gap: 10px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   background: transparent;
-  color: inherit;
-  font-weight: 800;
+  color: var(--brand-dark);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 700;
   text-align: left;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
 }
 
-.language-menu button:hover {
+.language-option:hover {
   background: var(--surface-soft);
+}
+
+.language-option.selected {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+.language-code {
+  min-width: 24px;
+  font-weight: 900;
 }
 
 .mobile-menu-button {
@@ -243,6 +304,7 @@ img {
   font-size: 14px;
   font-weight: 800;
   line-height: 1;
+  white-space: nowrap;
   transition:
     background 180ms ease,
     border-color 180ms ease,
@@ -299,9 +361,9 @@ img {
 
 .hero {
   position: relative;
-  min-height: 705px;
+  min-height: 860px;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   overflow: hidden;
   color: #ffffff;
 }
@@ -321,12 +383,16 @@ img {
 .hero-content {
   position: relative;
   z-index: 1;
-  padding-top: 108px;
-  padding-bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 112px;
+  padding-bottom: 64px;
 }
 
 .hero-copy {
   width: min(700px, 100%);
+  margin-top: 44px;
 }
 
 .eyebrow {
@@ -346,6 +412,14 @@ img {
   font-size: clamp(2.35rem, 5vw, 3.65rem);
   line-height: 1.02;
   letter-spacing: 0;
+}
+
+.title-mobile {
+  display: none;
+}
+
+.title-desktop {
+  display: block;
 }
 
 .hero p {
@@ -385,11 +459,9 @@ img {
   font-weight: 800;
 }
 
-.booking-shell {
-  position: relative;
-  z-index: 2;
-  margin-top: -106px;
-  padding-bottom: 42px;
+.hero-booking {
+  width: 100%;
+  margin-top: 0;
 }
 
 .booking-widget {
@@ -1123,7 +1195,11 @@ img {
   }
 
   .mobile-menu-button {
+    position: fixed;
+    top: 13px;
+    right: 16px;
     display: inline-flex;
+    z-index: 40;
   }
 
   .mobile-menu {
@@ -1156,17 +1232,39 @@ img {
 
   .mobile-language {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
   }
 
   .mobile-language button {
-    min-height: 42px;
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    gap: 9px;
     border: 1px solid var(--border-soft);
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--surface-warm);
     color: var(--brand-dark);
+    padding: 9px 10px;
     font-weight: 900;
+    text-align: left;
+  }
+
+  .mobile-language button span {
+    min-width: 26px;
+  }
+
+  .mobile-language button small {
+    min-width: 0;
+    color: inherit;
+    font-size: 12px;
+    font-weight: 750;
+  }
+
+  .mobile-language button.selected {
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    color: #ffffff;
   }
 
   .mobile-menu-ctas {
@@ -1237,7 +1335,7 @@ img {
   }
 
   .hero {
-    min-height: 720px;
+    min-height: 0;
     align-items: flex-start;
   }
 
@@ -1247,12 +1345,28 @@ img {
 
   .hero-content {
     padding-top: 112px;
-    padding-bottom: 128px;
+    padding-bottom: 48px;
   }
 
   .hero p {
+    max-width: calc(100vw - 32px);
     font-size: 15px;
     line-height: 1.62;
+    overflow-wrap: break-word;
+  }
+
+  .hero h1 {
+    max-width: calc(100vw - 32px);
+    font-size: 34px;
+    line-height: 1.1;
+  }
+
+  .title-desktop {
+    display: none;
+  }
+
+  .title-mobile {
+    display: block;
   }
 
   .hero-actions {
@@ -1267,8 +1381,8 @@ img {
     display: grid;
   }
 
-  .booking-shell {
-    margin-top: -92px;
+  .hero-booking {
+    margin-top: 36px;
   }
 
   .booking-widget {
@@ -1288,6 +1402,8 @@ img {
 
   .trip-tabs button {
     flex: 1;
+    min-width: 0;
+    white-space: nowrap;
   }
 
   .booking-grid {

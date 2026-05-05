@@ -150,6 +150,7 @@ function getBookingUrl(result: RouteSearchResult, locale: Locale) {
     from: result.from,
     to: result.to,
     date: result.departureDate,
+    departure: result.departureDate,
     time: result.departureTime,
     passengers: String(result.passengers),
     tripType: result.tripType,
@@ -166,6 +167,7 @@ function getBookingUrl(result: RouteSearchResult, locale: Locale) {
 
   if (result.tripType === "round-trip") {
     params.set("returnDate", result.returnDate);
+    params.set("return", result.returnDate);
     params.set("returnTime", result.returnTime);
   }
 
@@ -409,6 +411,7 @@ function LocationSelect({
   onChange,
   icon: Icon,
   error,
+  className,
   t
 }: {
   label: string;
@@ -416,6 +419,7 @@ function LocationSelect({
   onChange: (value: string) => void;
   icon: IconType;
   error?: string;
+  className?: string;
   t: PageDictionary;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -450,7 +454,7 @@ function LocationSelect({
   }, [isOpen]);
 
   return (
-    <div className="field field-location location-select" ref={wrapperRef}>
+    <div className={`field field-location location-select ${className ?? ""}`} ref={wrapperRef}>
       <span id={labelId}>{label}</span>
       <button
         type="button"
@@ -505,7 +509,8 @@ function DateInput({
   min,
   placeholder,
   onChange,
-  error
+  error,
+  className
 }: {
   label: string;
   value: string;
@@ -513,11 +518,12 @@ function DateInput({
   placeholder: string;
   onChange: (value: string) => void;
   error?: string;
+  className?: string;
 }) {
   const errorId = useId();
 
   return (
-    <label className="field">
+    <label className={`field ${className ?? ""}`}>
       <span>{label}</span>
       <div className={`field-control ${error ? "field-control-error" : ""}`}>
         <CalendarDays size={18} aria-hidden="true" />
@@ -547,17 +553,19 @@ function TimeInput({
   label,
   value,
   onChange,
-  error
+  error,
+  className
 }: {
   label: string;
   value: string;
   onChange: (value: string) => void;
   error?: string;
+  className?: string;
 }) {
   const errorId = useId();
 
   return (
-    <label className="field">
+    <label className={`field ${className ?? ""}`}>
       <span>{label}</span>
       <div className={`field-control ${error ? "field-control-error" : ""}`}>
         <Clock3 size={18} aria-hidden="true" />
@@ -582,17 +590,19 @@ function PassengerSelector({
   passengers,
   onChange,
   error,
+  className,
   t
 }: {
   passengers: number;
   onChange: (passengers: number) => void;
   error?: string;
+  className?: string;
   t: PageDictionary;
 }) {
   const errorId = useId();
 
   return (
-    <div className="field">
+    <div className={`field ${className ?? ""}`}>
       <span>{t.booking.passengers}</span>
       <div className={`field-control passenger-stepper ${error ? "field-control-error" : ""}`}>
         <Users size={18} aria-hidden="true" />
@@ -816,14 +826,16 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
     const reservationFee = Number((totalPrice * 0.1).toFixed(2));
     const remainingBalance = Number((totalPrice - reservationFee).toFixed(2));
 
-    setSearchResult({
+    const nextResult: RouteSearchResult = {
       ...baseResult,
       status: "available",
       route,
       totalPrice,
       reservationFee,
       remainingBalance
-    });
+    };
+
+    window.location.assign(getBookingUrl(nextResult, locale));
     setIsSearching(false);
   }
 
@@ -837,20 +849,10 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
       : t.booking.paymentNote;
 
   return (
-    <form className="booking-widget" id="booking" onSubmit={handleSubmit} noValidate>
-      <div className="booking-topline">
-        <TripTypeTabs
-          tripType={tripType}
-          t={t}
-          onChange={(nextTripType) => {
-            setTripType(nextTripType);
-            resetFeedback();
-          }}
-        />
-      </div>
-
+    <form className={`booking-widget booking-widget-${tripType}`} id="booking" onSubmit={handleSubmit} noValidate>
       <div className="booking-grid">
         <LocationSelect
+          className="from-field"
           label={t.booking.from}
           value={from}
           onChange={(value) => {
@@ -872,6 +874,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         </button>
 
         <LocationSelect
+          className="to-field"
           label={t.booking.to}
           value={to}
           onChange={(value) => {
@@ -883,7 +886,20 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
           t={t}
         />
 
+        <div className="field trip-type-field">
+          <span>{t.booking.tripType}</span>
+          <TripTypeTabs
+            tripType={tripType}
+            t={t}
+            onChange={(nextTripType) => {
+              setTripType(nextTripType);
+              resetFeedback();
+            }}
+          />
+        </div>
+
         <DateInput
+          className="departure-date-field"
           label={t.booking.departureDate}
           value={departureDate}
           min={today}
@@ -896,6 +912,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         />
 
         <TimeInput
+          className="departure-time-field"
           label={t.booking.departureTime}
           value={departureTime}
           error={errors.departureTime}
@@ -908,6 +925,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         {tripType === "round-trip" && (
           <>
             <DateInput
+              className="return-date-field"
               label={t.booking.returnDate}
               value={returnDate}
               min={departureDate || today}
@@ -919,6 +937,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
               }}
             />
             <TimeInput
+              className="return-time-field"
               label={t.booking.returnTime}
               value={returnTime}
               error={errors.returnTime}
@@ -931,6 +950,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         )}
 
         <PassengerSelector
+          className="passenger-field"
           passengers={passengers}
           error={errors.passengers}
           t={t}
@@ -970,9 +990,6 @@ export default function Home() {
         <section className="hero" id="home">
           <div className="hero-bg" />
           <div className="container hero-content">
-            <div className="hero-booking">
-              <BookingWidget t={t} locale={locale} />
-            </div>
             <div className="hero-copy">
               <h1>
                 <span className="title-desktop">{t.hero.title}</span>
@@ -986,62 +1003,23 @@ export default function Home() {
                 </span>
               </h1>
               <p>{t.hero.text}</p>
-              <div className="hero-actions">
-                <a className="button button-primary" href="#booking">
-                  {t.hero.primaryCta}
-                </a>
-                <a className="button button-secondary" href="#popular-destinations">
-                  {t.hero.secondaryCta}
-                </a>
-                <a
-                  className="button button-ghost"
-                  href={createWhatsAppLink(t.common.whatsappInquiry)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle size={17} aria-hidden="true" />
-                  {t.common.contactWhatsapp}
-                </a>
-              </div>
-              <div className="hero-trust" aria-label={t.a11y.transferHighlights}>
-                <span>
-                  <ShieldCheck size={16} aria-hidden="true" />
-                  {t.hero.trust[0]}
-                </span>
-                <span>
-                  <CircleDollarSign size={16} aria-hidden="true" />
-                  {t.hero.trust[1]}
-                </span>
-                <span>
-                  <Clock3 size={16} aria-hidden="true" />
-                  {t.hero.trust[2]}
-                </span>
-              </div>
             </div>
-          </div>
-        </section>
-
-        <section className="section section-soft" id="vip-transfer">
-          <div className="container">
-            <div className="section-heading section-heading-left">
-              <span className="eyebrow">{t.vip.eyebrow}</span>
-              <h2>{t.vip.title}</h2>
-              <p>{t.vip.text}</p>
+            <div className="hero-booking">
+              <BookingWidget t={t} locale={locale} />
             </div>
-            <div className="experience-grid">
-              {t.experienceCards.map((card, index) => {
-                const Icon = experienceCardIcons[index];
-                const key = `${locale}-${card.title}`;
-                return (
-                  <article className="feature-card" key={key}>
-                    <div className="icon-badge">
-                      <Icon size={22} aria-hidden="true" />
-                    </div>
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
-                  </article>
-                );
-              })}
+            <div className="hero-trust" aria-label={t.a11y.transferHighlights}>
+              <span>
+                <ShieldCheck size={16} aria-hidden="true" />
+                {t.hero.trust[0]}
+              </span>
+              <span>
+                <CircleDollarSign size={16} aria-hidden="true" />
+                {t.hero.trust[1]}
+              </span>
+              <span>
+                <Clock3 size={16} aria-hidden="true" />
+                {t.hero.trust[2]}
+              </span>
             </div>
           </div>
         </section>
@@ -1082,76 +1060,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section" id="other-services">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">{t.otherServices.eyebrow}</span>
-              <h2>{t.otherServices.title}</h2>
-              <p>{t.otherServices.text}</p>
-            </div>
-            <div className="services-grid">
-              {otherServiceCards.map((serviceMeta) => {
-                const service = t.otherServices[serviceMeta.key];
-                const Icon = serviceMeta.icon;
-                return (
-                  <article className="service-card" key={`${locale}-${service.title}`}>
-                    <div className="service-image">
-                      <img src={serviceMeta.image} alt={service.title} />
-                    </div>
-                    <div className="service-content">
-                      <span className="service-badge">
-                        <Icon size={15} aria-hidden="true" />
-                        {service.subtitle}
-                      </span>
-                      <h3>{service.title}</h3>
-                      <p>{service.description}</p>
-                      <a href={createWhatsAppLink(service.whatsappMessage)} target="_blank" rel="noopener noreferrer">
-                        {service.cta}
-                      </a>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="section fleet-section" id="fleet">
-          <div className="container fleet-layout">
-            <div className="fleet-vehicle-grid">
-              {t.fleet.vehicles.map((vehicle, index) => (
-                <article className="fleet-vehicle-card" key={`${locale}-${vehicle.name}`}>
-                  <div className="fleet-vehicle-image">
-                    <img src={fleetVehicleImages[index]} alt={vehicle.imageAlt} />
-                  </div>
-                  <div className="fleet-vehicle-content">
-                    <span>{vehicle.role}</span>
-                    <h3>{vehicle.name}</h3>
-                    <p>{vehicle.description}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-            <div className="fleet-copy">
-              <span className="eyebrow">{t.fleet.eyebrow}</span>
-              <h2>{t.fleet.title}</h2>
-              <p>{t.fleet.text}</p>
-              <ul className="fleet-list">
-                {t.fleet.features.map((feature) => (
-                  <li key={feature}>
-                    <CheckCircle2 size={18} aria-hidden="true" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <a className="button button-primary" href="#booking">
-                {t.fleet.cta}
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="why-band" id="about">
+        <section className="why-band" id="hakkimizda">
           <div className="container">
             <div className="section-heading light">
               <span className="eyebrow">{t.why.eyebrow}</span>
@@ -1175,80 +1084,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section-soft" id="how-reservation-works">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">{t.reservation.eyebrow}</span>
-              <h2>{t.reservation.title}</h2>
-              <p>{t.reservation.text}</p>
-            </div>
-            <div className="steps-grid">
-              {t.reservation.steps.map((step, index) => {
-                const Icon = stepIcons[index];
-                return (
-                  <article className="step-card" key={`${locale}-${step.title}`}>
-                    <span className="step-number">{index + 1}</span>
-                    <Icon size={24} aria-hidden="true" />
-                    <h3>{step.title}</h3>
-                    <p>{step.text}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="testimonials">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">{t.testimonials.eyebrow}</span>
-              <h2>{t.testimonials.title}</h2>
-              <p>{t.testimonials.text}</p>
-            </div>
-            <div className="testimonial-grid">
-              {t.testimonials.items.map((testimonial) => (
-                <article className="testimonial-card" key={`${locale}-${testimonial.name}`}>
-                  <div className="stars" aria-label={t.a11y.fiveStarRating}>
-                    {Array.from({ length: 5 }, (_, index) => (
-                      <Star key={index} size={16} fill="currentColor" aria-hidden="true" />
-                    ))}
-                  </div>
-                  <p>“{testimonial.quote}”</p>
-                  <div className="guest">
-                    <span>{testimonial.name.slice(0, 1)}</span>
-                    <div>
-                      <strong>{testimonial.name}</strong>
-                      <small>{testimonial.country}</small>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section faq-section" id="faq">
-          <div className="container faq-layout">
-            <div className="faq-intro">
-              <span className="eyebrow">{t.faq.eyebrow}</span>
-              <h2>{t.faq.title}</h2>
-              <p>{t.faq.text}</p>
-            </div>
-            <div className="faq-list">
-              {t.faq.items.map((faq) => (
-                <details key={`${locale}-${faq.question}`}>
-                  <summary>
-                    {faq.question}
-                    <ChevronDown size={18} aria-hidden="true" />
-                  </summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="cta-banner">
+        <section className="cta-banner" id="iletisim">
           <div className="container cta-content">
             <div>
               <span className="eyebrow">{t.cta.eyebrow}</span>
@@ -1273,7 +1109,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="footer" id="contact">
+      <footer className="footer">
         <div className="container footer-grid">
           <div>
             <a className="brand footer-brand" href="#home">
@@ -1293,7 +1129,7 @@ export default function Home() {
           <div>
             <h3>{t.footer.services}</h3>
             {t.footer.serviceLinks.map((serviceLink, index) => (
-              <a href={index === t.footer.serviceLinks.length - 1 ? "#other-services" : "#booking"} key={serviceLink}>
+              <a href={index === t.footer.serviceLinks.length - 1 ? "/diger-hizmetler" : "#booking"} key={serviceLink}>
                 {serviceLink}
               </a>
             ))}

@@ -75,12 +75,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Home", href: "#home" },
-      { label: "VIP Transfer", href: "#vip-transfer" },
+      { label: "Home", href: "/" },
       { label: "Popular Destinations", href: "#popular-destinations" },
-      { label: "Other Services", href: "#other-services" },
-      { label: "About", href: "#about" },
-      { label: "Contact", href: "#contact" }
+      { label: "Other Services", href: "/other-services" },
+      { label: "About", href: "#hakkimizda" },
+      { label: "Contact", href: "#iletisim" }
     ],
     common: {
       bookNow: "Book Now",
@@ -132,7 +131,7 @@ export const dictionaries = {
       departureTime: "Departure Time",
       datePlaceholder: "DD.MM.YYYY",
       passengers: "Passengers",
-      search: "Search",
+      search: "Search Transfer",
       swap: "Swap departure and arrival locations",
       passengerLabel: (count: number) => `${count} ${count === 1 ? "Passenger" : "Passengers"}`,
       fixedFound: (price: number) =>
@@ -178,10 +177,9 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "Dalaman Airport - Fethiye - Kalkan - Kas",
-      title: "Premium VIP Transfers from Dalaman Airport",
-      mobileTitle: ["Premium VIP", "Transfers from", "Dalaman Airport"],
-      text:
-        "Private airport transfers to Fethiye, Gocek, Kalkan, Kas and nearby destinations with fixed prices, Mercedes-Benz Vito vehicles, 24/7 service, and airport meet & greet.",
+      title: "Create Your VIP Transfer Reservation Quickly",
+      mobileTitle: ["Create Your", "VIP Transfer", "Reservation Quickly"],
+      text: "Easily plan your transfer for Fethiye, Oludeniz, Gocek, Kalkan and Kas.",
       primaryCta: "Book Your Transfer",
       secondaryCta: "View Fixed Prices",
       trust: ["Safe private transfer", "Fixed route prices", "24/7 availability"]
@@ -451,12 +449,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Ana Sayfa", href: "#home" },
-      { label: "VIP Transfer", href: "#vip-transfer" },
+      { label: "Ana Sayfa", href: "/" },
       { label: "Popüler Destinasyonlar", href: "#popular-destinations" },
-      { label: "Diğer Hizmetler", href: "#other-services" },
-      { label: "Hakkımızda", href: "#about" },
-      { label: "İletişim", href: "#contact" }
+      { label: "Diğer Hizmetler", href: "/diger-hizmetler" },
+      { label: "Hakkımızda", href: "#hakkimizda" },
+      { label: "İletişim", href: "#iletisim" }
     ],
     common: {
       bookNow: "Rezervasyon Yap",
@@ -508,8 +505,8 @@ export const dictionaries = {
       departureDate: "Gidiş Tarihi",
       departureTime: "Gidiş Saati",
       datePlaceholder: "GG.AA.YYYY",
-      passengers: "Yolcular",
-      search: "Ara",
+      passengers: "Yolcu Sayısı",
+      search: "Rezervasyon Ara",
       swap: "Kalkış ve varış noktalarını değiştir",
       passengerLabel: (count: number) => `${count} Yolcu`,
       fixedFound: (price: number) =>
@@ -555,10 +552,9 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "Dalaman Havalimanı - Fethiye - Kalkan - Kaş",
-      title: "Dalaman Havalimanı'ndan Premium VIP Transfer",
-      mobileTitle: ["Premium VIP", "Dalaman Havalimanı", "Transferleri"],
-      text:
-        "Dalaman Havalimanı’ndan Fethiye, Ölüdeniz, Kalkan ve Kaş’a kadar uzanan VIP transfer hizmetimiz; sabit fiyat politikası, Mercedes-Benz Vito konforu, 7/24 kesintisiz hizmet anlayışı ve özenli havalimanı karşılama deneyimiyle ayrıcalıklı bir ulaşım sunar.",
+      title: "VIP Transfer Rezervasyonunuzu Hızlıca Oluşturun",
+      mobileTitle: ["VIP Transfer", "Rezervasyonunuzu", "Hızlıca Oluşturun"],
+      text: "Fethiye, Ölüdeniz, Göcek, Kalkan ve Kaş için transferinizi kolayca planlayın.",
       primaryCta: "Transfer Rezervasyonu Yap",
       secondaryCta: "Sabit Fiyatları Gör",
       trust: ["Güvenli özel transfer", "Sabit rota fiyatları", "7/24 hizmet"]
@@ -799,12 +795,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Главная", href: "#home" },
-      { label: "VIP трансфер", href: "#vip-transfer" },
+      { label: "Главная", href: "/" },
       { label: "Популярные направления", href: "#popular-destinations" },
-      { label: "Другие услуги", href: "#other-services" },
-      { label: "О нас", href: "#about" },
-      { label: "Контакты", href: "#contact" }
+      { label: "Другие услуги", href: "/diger-hizmetler" },
+      { label: "О нас", href: "#hakkimizda" },
+      { label: "Контакты", href: "#iletisim" }
     ],
     common: {
       bookNow: "Забронировать",
@@ -857,7 +852,7 @@ export const dictionaries = {
       departureTime: "Время выезда",
       datePlaceholder: "ДД.ММ.ГГГГ",
       passengers: "Пассажиры",
-      search: "Поиск",
+      search: "Найти трансфер",
       swap: "Поменять местами пункт отправления и назначения",
       passengerLabel: (count: number) => `${count} ${count === 1 ? "пассажир" : count < 5 ? "пассажира" : "пассажиров"}`,
       fixedFound: (price: number) =>
@@ -902,9 +897,9 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "Аэропорт Даламан - Фетхие - Калкан - Каш",
-      title: "Премиальные VIP трансферы из аэропорта Даламан",
-      mobileTitle: ["Премиальные VIP", "трансферы из", "аэропорта Даламан"],
-      text: "Частные трансферы в Фетхие, Гёджек, Калкан, Каш и ближайшие направления с фиксированными ценами, Mercedes-Benz Vito, сервисом 24/7 и встречей в аэропорту.",
+      title: "Быстро оформите бронирование VIP-трансфера",
+      mobileTitle: ["Быстро оформите", "бронирование", "VIP-трансфера"],
+      text: "Легко спланируйте трансфер в Фетхие, Олюдениз, Гёджек, Калкан и Каш.",
       primaryCta: "Забронировать трансфер",
       secondaryCta: "Посмотреть цены",
       trust: ["Безопасный частный трансфер", "Фиксированные цены", "Сервис 24/7"]
@@ -1144,12 +1139,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "首页", href: "#home" },
-      { label: "VIP接送", href: "#vip-transfer" },
+      { label: "首页", href: "/" },
       { label: "热门目的地", href: "#popular-destinations" },
-      { label: "其他服务", href: "#other-services" },
-      { label: "关于我们", href: "#about" },
-      { label: "联系", href: "#contact" }
+      { label: "其他服务", href: "/diger-hizmetler" },
+      { label: "关于我们", href: "#hakkimizda" },
+      { label: "联系", href: "#iletisim" }
     ],
     common: {
       bookNow: "立即预订",
@@ -1207,7 +1201,7 @@ export const dictionaries = {
       departureTime: "出发时间",
       datePlaceholder: "DD.MM.YYYY",
       passengers: "乘客",
-      search: "搜索",
+      search: "搜索接送",
       swap: "交换出发地和目的地",
       passengerLabel: (count: number) => `${count} 位乘客`,
       fixedFound: (price: number) => `已找到固定价格：GBP ${price}。在线支付预订费，余款在接送途中支付。`,
@@ -1250,9 +1244,9 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "达拉曼机场 - 费特希耶 - 卡尔坎 - 卡什",
-      title: "从达拉曼机场出发的高端 VIP 接送",
-      mobileTitle: ["高端 VIP", "达拉曼机场", "私人接送"],
-      text: "前往费特希耶、格杰克、卡尔坎、卡什及周边目的地的私人机场接送，固定价格、Mercedes-Benz Vito 车辆、24/7 服务和机场迎接。",
+      title: "快速创建您的 VIP 接送预订",
+      mobileTitle: ["快速创建", "您的 VIP", "接送预订"],
+      text: "轻松规划前往费特希耶、厄吕代尼兹、格杰克、卡尔坎和卡什的接送。",
       primaryCta: "预订接送",
       secondaryCta: "查看固定价格",
       trust: ["安全私人接送", "固定路线价格", "24/7 服务"]

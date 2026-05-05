@@ -224,7 +224,18 @@ img {
 }
 
 .whatsapp-link {
-  padding: 0 11px;
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0;
+  color: #ffffff;
+}
+
+.whatsapp-brand-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
 }
 
 .language-trigger-open,

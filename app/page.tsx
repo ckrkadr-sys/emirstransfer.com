@@ -33,6 +33,7 @@ import {
 import { languageOptions, type Locale } from "../lib/i18n/config";
 import { type PageDictionary } from "../lib/i18n/dictionaries";
 import { useI18n } from "../lib/i18n/useI18n";
+import { createWhatsAppLink } from "../lib/whatsapp";
 
 type RoutePrice = {
   from: string;
@@ -184,7 +185,22 @@ function getWhatsappUrl(result: RouteSearchResult, t: PageDictionary) {
     `${t.booking.vehicleLabel}: ${t.common.vehicle}`
   ].filter(Boolean);
 
-  return `https://wa.me/905000000000?text=${encodeURIComponent(lines.join("\n"))}`;
+  return createWhatsAppLink(lines.join("\n"));
+}
+
+function WhatsAppBrandIcon() {
+  return (
+    <svg className="whatsapp-brand-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+      <path
+        fill="#25D366"
+        d="M16 3.2C8.93 3.2 3.2 8.93 3.2 16c0 2.26.59 4.46 1.72 6.4L3.34 29l6.75-1.54A12.75 12.75 0 0 0 16 28.8c7.07 0 12.8-5.73 12.8-12.8S23.07 3.2 16 3.2Z"
+      />
+      <path
+        fill="#ffffff"
+        d="M23.3 19.36c-.36-.18-2.13-1.05-2.46-1.17-.33-.12-.57-.18-.81.18-.24.36-.93 1.17-1.14 1.41-.21.24-.42.27-.78.09-.36-.18-1.52-.56-2.9-1.79-1.07-.96-1.8-2.14-2.01-2.5-.21-.36-.02-.56.16-.74.16-.16.36-.42.54-.63.18-.21.24-.36.36-.6.12-.24.06-.45-.03-.63-.09-.18-.81-1.95-1.11-2.67-.29-.7-.59-.61-.81-.62l-.69-.01c-.24 0-.63.09-.96.45-.33.36-1.26 1.23-1.26 3s1.29 3.48 1.47 3.72c.18.24 2.54 3.88 6.15 5.44.86.37 1.53.59 2.05.76.86.27 1.64.23 2.26.14.69-.1 2.13-.87 2.43-1.71.3-.84.3-1.56.21-1.71-.09-.15-.33-.24-.69-.42Z"
+      />
+    </svg>
+  );
 }
 
 function Header({
@@ -288,9 +304,14 @@ function Header({
                 </div>
               )}
             </div>
-            <a className="whatsapp-link" href="#contact" aria-label={t.a11y.contactWhatsapp}>
-              <MessageCircle size={16} aria-hidden="true" />
-              {t.common.whatsapp}
+            <a
+              className="whatsapp-link"
+              href={createWhatsAppLink(t.common.whatsappInquiry)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t.a11y.contactWhatsapp}
+            >
+              <WhatsAppBrandIcon />
             </a>
             <a className="button button-primary header-book" href="#booking">
               {t.common.bookNow}
@@ -334,7 +355,13 @@ function Header({
             ))}
           </div>
           <div className="mobile-menu-ctas">
-            <a className="button button-outline-dark" href="#contact" onClick={() => setIsMenuOpen(false)}>
+            <a
+              className="button button-outline-dark"
+              href={createWhatsAppLink(t.common.whatsappInquiry)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMenuOpen(false)}
+            >
               {t.common.contactWhatsapp}
             </a>
             <a className="button button-primary" href="#booking" onClick={() => setIsMenuOpen(false)}>
@@ -660,7 +687,7 @@ function RouteResultCard({ result, t, locale }: { result: RouteSearchResult; t: 
             <a className="button button-primary" href={getBookingUrl(result, locale)}>
               {t.booking.continueReservation}
             </a>
-            <a className="button button-outline-dark" href={whatsappUrl} target="_blank" rel="noreferrer">
+            <a className="button button-outline-dark" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <MessageCircle size={17} aria-hidden="true" />
               {t.common.contactWhatsapp}
             </a>
@@ -670,7 +697,7 @@ function RouteResultCard({ result, t, locale }: { result: RouteSearchResult; t: 
 
       {!isAvailable && (
         <div className="result-actions">
-          <a className="button button-primary" href={whatsappUrl} target="_blank" rel="noreferrer">
+          <a className="button button-primary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
             <MessageCircle size={17} aria-hidden="true" />
             {t.common.contactWhatsapp}
           </a>
@@ -966,7 +993,12 @@ export default function Home() {
                 <a className="button button-secondary" href="#popular-destinations">
                   {t.hero.secondaryCta}
                 </a>
-                <a className="button button-ghost" href="#contact">
+                <a
+                  className="button button-ghost"
+                  href={createWhatsAppLink(t.common.whatsappInquiry)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <MessageCircle size={17} aria-hidden="true" />
                   {t.common.contactWhatsapp}
                 </a>
@@ -985,6 +1017,31 @@ export default function Home() {
                   {t.hero.trust[2]}
                 </span>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section section-soft" id="vip-transfer">
+          <div className="container">
+            <div className="section-heading section-heading-left">
+              <span className="eyebrow">{t.vip.eyebrow}</span>
+              <h2>{t.vip.title}</h2>
+              <p>{t.vip.text}</p>
+            </div>
+            <div className="experience-grid">
+              {t.experienceCards.map((card, index) => {
+                const Icon = experienceCardIcons[index];
+                const key = `${locale}-${card.title}`;
+                return (
+                  <article className="feature-card" key={key}>
+                    <div className="icon-badge">
+                      <Icon size={22} aria-hidden="true" />
+                    </div>
+                    <h3>{card.title}</h3>
+                    <p>{card.text}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -1025,31 +1082,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section section-soft" id="vip-transfer">
-          <div className="container">
-            <div className="section-heading section-heading-left">
-              <span className="eyebrow">{t.vip.eyebrow}</span>
-              <h2>{t.vip.title}</h2>
-              <p>{t.vip.text}</p>
-            </div>
-            <div className="experience-grid">
-              {t.experienceCards.map((card, index) => {
-                const Icon = experienceCardIcons[index];
-                const key = `${locale}-${card.title}`;
-                return (
-                  <article className="feature-card" key={key}>
-                    <div className="icon-badge">
-                      <Icon size={22} aria-hidden="true" />
-                    </div>
-                    <h3>{card.title}</h3>
-                    <p>{card.text}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
         <section className="section" id="other-services">
           <div className="container">
             <div className="section-heading">
@@ -1073,7 +1105,9 @@ export default function Home() {
                       </span>
                       <h3>{service.title}</h3>
                       <p>{service.description}</p>
-                      <a href="#booking">{service.cta}</a>
+                      <a href={createWhatsAppLink(service.whatsappMessage)} target="_blank" rel="noopener noreferrer">
+                        {service.cta}
+                      </a>
                     </div>
                   </article>
                 );
@@ -1225,7 +1259,12 @@ export default function Home() {
               <a className="button button-light" href="#booking">
                 {t.common.bookNow}
               </a>
-              <a className="button button-cta-outline" href="#contact">
+              <a
+                className="button button-cta-outline"
+                href={createWhatsAppLink(t.common.whatsappInquiry)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <MessageCircle size={17} aria-hidden="true" />
                 {t.common.contactWhatsapp}
               </a>
@@ -1265,7 +1304,7 @@ export default function Home() {
               <UserRound size={16} aria-hidden="true" />
               {t.brand.phone}
             </a>
-            <a href="#contact">
+            <a href={createWhatsAppLink(t.common.whatsappInquiry)} target="_blank" rel="noopener noreferrer">
               <MessageCircle size={16} aria-hidden="true" />
               {t.common.whatsapp}
             </a>

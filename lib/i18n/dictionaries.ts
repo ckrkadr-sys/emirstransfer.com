@@ -86,6 +86,7 @@ export const dictionaries = {
       bookNow: "Book Now",
       whatsapp: "WhatsApp",
       contactWhatsapp: "Contact on WhatsApp",
+      whatsappInquiry: "Hello, I would like to get information about your VIP transfer service.",
       viewDetails: "View Details",
       selectLanguage: "Select language",
       vehicle: "Mercedes-Benz Vito",
@@ -231,14 +232,16 @@ export const dictionaries = {
         subtitle: "Private minibus tours",
         description:
           "Explore Fethiye, Oludeniz, Gocek, Kas and nearby popular destinations with comfortable Mercedes-Benz Sprinter vehicles.",
-        cta: "View City Tours"
+        cta: "Contact on WhatsApp",
+        whatsappMessage: "Hello, I would like to get information about the Minibus City Tour."
       },
       boatRental: {
         title: "Private Tour Boat Rental",
         subtitle: "Private sea tours",
         description:
           "Enjoy a private boat experience with flexible routes, beautiful bays, and a comfortable sea tour plan.",
-        cta: "View Boat Rental"
+        cta: "Contact on WhatsApp",
+        whatsappMessage: "Hello, I would like to get information about Private Tour Boat Rental."
       }
     },
     services: [
@@ -459,6 +462,7 @@ export const dictionaries = {
       bookNow: "Rezervasyon Yap",
       whatsapp: "WhatsApp",
       contactWhatsapp: "WhatsApp ile İletişim",
+      whatsappInquiry: "Merhaba, VIP transfer hizmetiniz hakkında bilgi almak istiyorum.",
       viewDetails: "Detayları Gör",
       selectLanguage: "Dil seç",
       vehicle: "Mercedes-Benz Vito",
@@ -474,7 +478,7 @@ export const dictionaries = {
     a11y: {
       home: "EMİRSTRANSFER.COM ana sayfa",
       primaryNavigation: "Ana navigasyon",
-      contactWhatsapp: "WhatsApp ile iletişim",
+      contactWhatsapp: "WhatsApp ile iletişime geç",
       openMobileMenu: "Mobil menüyü aç",
       mobileNavigation: "Mobil navigasyon",
       languageSelector: "Dil seçici",
@@ -566,8 +570,9 @@ export const dictionaries = {
     },
     vip: {
       eyebrow: "VIP transfer deneyimi",
-      title: "Konfor İçin Tasarlanmış Özel Transferler",
-      text: "Türk Rivierası'na gelen uluslararası turistler için premium ama ulaşılabilir bir transfer deneyimi."
+      title: "Konfor İçin Tasarlanmış Özel VIP Transferler",
+      text:
+        "Türk Rivierası’na gelen uluslararası turistler için Dalaman Havalimanı, Fethiye, Ölüdeniz, Kalkan ve Kaş rotalarında konforlu, güvenilir ve profesyonel özel transfer deneyimi."
     },
     experienceCards: [
       { title: "Mercedes-Benz Vito Konforu", text: "Geniş oturma alanı, bagaj kapasitesi ve sakin yolculuk deneyimi sunan özel Vito transferleri." },
@@ -586,14 +591,16 @@ export const dictionaries = {
         subtitle: "Özel minibüs turları",
         description:
           "Fethiye, Ölüdeniz, Göcek, Kaş ve çevresindeki popüler noktaları konforlu Mercedes-Benz Sprinter araçlarla keşfedin.",
-        cta: "Şehir Turlarını İncele"
+        cta: "WhatsApp ile İletişime Geç",
+        whatsappMessage: "Merhaba, Minibüsle Şehir Turu hakkında bilgi almak istiyorum."
       },
       boatRental: {
         title: "Özel Tur Teknesi Kiralama",
         subtitle: "Özel deniz turu",
         description:
           "Size özel planlanabilen rota seçenekleriyle koyları ve deniz turu deneyimini konforlu şekilde yaşayın.",
-        cta: "Tekne Kiralamayı İncele"
+        cta: "WhatsApp ile İletişime Geç",
+        whatsappMessage: "Merhaba, Özel Tur Teknesi Kiralama hakkında bilgi almak istiyorum."
       }
     },
     services: [
@@ -803,6 +810,7 @@ export const dictionaries = {
       bookNow: "Забронировать",
       whatsapp: "WhatsApp",
       contactWhatsapp: "Связаться в WhatsApp",
+      whatsappInquiry: "Здравствуйте, я хочу получить информацию о VIP-трансфере.",
       viewDetails: "Подробнее",
       selectLanguage: "Выбрать язык",
       vehicle: "Mercedes-Benz Vito",
@@ -928,14 +936,16 @@ export const dictionaries = {
         subtitle: "Частные туры на минибусе",
         description:
           "Исследуйте Фетхие, Олюдениз, Гёджек, Каш и ближайшие направления на комфортных Mercedes-Benz Sprinter.",
-        cta: "Посмотреть городские туры"
+        cta: "Связаться в WhatsApp",
+        whatsappMessage: "Здравствуйте, я хочу получить информацию о городской экскурсии на микроавтобусе."
       },
       boatRental: {
         title: "Аренда частной прогулочной лодки",
         subtitle: "Частные морские туры",
         description:
           "Насладитесь частной лодочной прогулкой с гибкими маршрутами, красивыми бухтами и комфортным планом морского тура.",
-        cta: "Посмотреть аренду лодки"
+        cta: "Связаться в WhatsApp",
+        whatsappMessage: "Здравствуйте, я хочу получить информацию об аренде частной прогулочной лодки."
       }
     },
     services: [
@@ -1145,6 +1155,7 @@ export const dictionaries = {
       bookNow: "立即预订",
       whatsapp: "WhatsApp",
       contactWhatsapp: "通过 WhatsApp 联系",
+      whatsappInquiry: "您好，我想了解 VIP 接送服务。",
       viewDetails: "查看详情",
       selectLanguage: "选择语言",
       vehicle: "Mercedes-Benz Vito",
@@ -1272,13 +1283,15 @@ export const dictionaries = {
         title: "小巴城市游",
         subtitle: "私人小巴游",
         description: "乘坐舒适的 Mercedes-Benz Sprinter 探索费特希耶、厄吕代尼兹、格杰克、卡什及周边热门目的地。",
-        cta: "查看城市游"
+        cta: "通过 WhatsApp 联系",
+        whatsappMessage: "您好，我想了解小巴城市游。"
       },
       boatRental: {
         title: "私人游船租赁",
         subtitle: "私人海上游",
         description: "享受私人游船体验，灵活路线、美丽海湾和舒适的海上游计划。",
-        cta: "查看游船租赁"
+        cta: "通过 WhatsApp 联系",
+        whatsappMessage: "您好，我想了解私人游船租赁。"
       }
     },
     services: [

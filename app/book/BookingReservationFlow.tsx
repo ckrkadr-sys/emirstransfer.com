@@ -4,6 +4,7 @@ import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
 import { ArrowLeft, CheckCircle2, CreditCard, Mail, MessageCircle, Plane, UserRound } from "lucide-react";
 import { fallbackLocale, type Locale } from "../../lib/i18n/config";
 import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
+import { createWhatsAppLink } from "../../lib/whatsapp";
 
 export type BookingPageData = {
   from: string;
@@ -37,8 +38,6 @@ type ReservationPayload = {
   customer: ReservationFormState;
   locale: Locale;
 };
-
-const whatsappPhone = "905000000000";
 
 const initialFormState: ReservationFormState = {
   fullName: "",
@@ -250,7 +249,7 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
   }
 
   function openWhatsapp(message: string) {
-    window.open(`https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(createWhatsAppLink(message), "_blank", "noopener,noreferrer");
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

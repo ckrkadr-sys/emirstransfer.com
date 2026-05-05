@@ -75,12 +75,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Home", href: "#home" },
-      { label: "VIP Transfer", href: "#vip-transfer" },
+      { label: "Home", href: "/" },
       { label: "Popular Destinations", href: "#popular-destinations" },
-      { label: "Other Services", href: "#other-services" },
-      { label: "About", href: "#about" },
-      { label: "Contact", href: "#contact" }
+      { label: "Other Services", href: "/other-services" },
+      { label: "About", href: "#hakkimizda" },
+      { label: "Contact", href: "#iletisim" }
     ],
     common: {
       bookNow: "Book Now",
@@ -132,7 +131,7 @@ export const dictionaries = {
       departureTime: "Departure Time",
       datePlaceholder: "DD.MM.YYYY",
       passengers: "Passengers",
-      search: "Search",
+      search: "Search Transfer",
       swap: "Swap departure and arrival locations",
       passengerLabel: (count: number) => `${count} ${count === 1 ? "Passenger" : "Passengers"}`,
       fixedFound: (price: number) =>
@@ -451,12 +450,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Ana Sayfa", href: "#home" },
-      { label: "VIP Transfer", href: "#vip-transfer" },
+      { label: "Ana Sayfa", href: "/" },
       { label: "Popüler Destinasyonlar", href: "#popular-destinations" },
-      { label: "Diğer Hizmetler", href: "#other-services" },
-      { label: "Hakkımızda", href: "#about" },
-      { label: "İletişim", href: "#contact" }
+      { label: "Diğer Hizmetler", href: "/diger-hizmetler" },
+      { label: "Hakkımızda", href: "#hakkimizda" },
+      { label: "İletişim", href: "#iletisim" }
     ],
     common: {
       bookNow: "Rezervasyon Yap",
@@ -509,7 +507,7 @@ export const dictionaries = {
       departureTime: "Gidiş Saati",
       datePlaceholder: "GG.AA.YYYY",
       passengers: "Yolcular",
-      search: "Ara",
+      search: "Rezervasyon Ara",
       swap: "Kalkış ve varış noktalarını değiştir",
       passengerLabel: (count: number) => `${count} Yolcu`,
       fixedFound: (price: number) =>
@@ -799,12 +797,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "Главная", href: "#home" },
-      { label: "VIP трансфер", href: "#vip-transfer" },
+      { label: "Главная", href: "/" },
       { label: "Популярные направления", href: "#popular-destinations" },
-      { label: "Другие услуги", href: "#other-services" },
-      { label: "О нас", href: "#about" },
-      { label: "Контакты", href: "#contact" }
+      { label: "Другие услуги", href: "/diger-hizmetler" },
+      { label: "О нас", href: "#hakkimizda" },
+      { label: "Контакты", href: "#iletisim" }
     ],
     common: {
       bookNow: "Забронировать",
@@ -857,7 +854,7 @@ export const dictionaries = {
       departureTime: "Время выезда",
       datePlaceholder: "ДД.ММ.ГГГГ",
       passengers: "Пассажиры",
-      search: "Поиск",
+      search: "Найти трансфер",
       swap: "Поменять местами пункт отправления и назначения",
       passengerLabel: (count: number) => `${count} ${count === 1 ? "пассажир" : count < 5 ? "пассажира" : "пассажиров"}`,
       fixedFound: (price: number) =>
@@ -1144,12 +1141,11 @@ export const dictionaries = {
       email: "info@emirstransfer.com"
     },
     navItems: [
-      { label: "首页", href: "#home" },
-      { label: "VIP接送", href: "#vip-transfer" },
+      { label: "首页", href: "/" },
       { label: "热门目的地", href: "#popular-destinations" },
-      { label: "其他服务", href: "#other-services" },
-      { label: "关于我们", href: "#about" },
-      { label: "联系", href: "#contact" }
+      { label: "其他服务", href: "/diger-hizmetler" },
+      { label: "关于我们", href: "#hakkimizda" },
+      { label: "联系", href: "#iletisim" }
     ],
     common: {
       bookNow: "立即预订",
@@ -1207,7 +1203,7 @@ export const dictionaries = {
       departureTime: "出发时间",
       datePlaceholder: "DD.MM.YYYY",
       passengers: "乘客",
-      search: "搜索",
+      search: "搜索接送",
       swap: "交换出发地和目的地",
       passengerLabel: (count: number) => `${count} 位乘客`,
       fixedFound: (price: number) => `已找到固定价格：GBP ${price}。在线支付预订费，余款在接送途中支付。`,

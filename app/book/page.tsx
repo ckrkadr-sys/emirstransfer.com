@@ -1,14 +1,6 @@
 import { defaultLocale, fallbackLocale, isLocale, type Locale } from "../../lib/i18n/config";
+import { findRouteByHotelOrDestination, getPriceForRoute } from "../../lib/transferPricing";
 import { BookingReservationFlow, type BookingPageData } from "./BookingReservationFlow";
-
-const routePrices = [
-  { from: "Dalaman Airport", to: "Fethiye", price: 40, currency: "GBP" },
-  { from: "Dalaman Airport", to: "Calis", price: 40, currency: "GBP" },
-  { from: "Dalaman Airport", to: "Oludeniz", price: 50, currency: "GBP" },
-  { from: "Dalaman Airport", to: "Gocek", price: 35, currency: "GBP" },
-  { from: "Dalaman Airport", to: "Kalkan", price: 75, currency: "GBP" },
-  { from: "Dalaman Airport", to: "Kas", price: 90, currency: "GBP" }
-] as const;
 
 type BookPageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -25,7 +17,8 @@ function readNumber(params: Record<string, string | string[] | undefined>, key: 
 }
 
 function findRoute(from: string, to: string) {
-  return routePrices.find((route) => (route.from === from && route.to === to) || (route.from === to && route.to === from));
+  const destination = from === "Dalaman Airport" ? to : from;
+  return findRouteByHotelOrDestination(destination);
 }
 
 function getLocale(params: Record<string, string | string[] | undefined>): Locale {
@@ -39,7 +32,7 @@ export default async function BookPage({ searchParams }: BookPageProps) {
   const to = readParam(params, "to");
   const tripType = readParam(params, "tripType") === "round-trip" ? "round-trip" : "one-way";
   const route = findRoute(from, to);
-  const routePrice = readNumber(params, "price") ?? route?.price ?? 0;
+  const routePrice = readNumber(params, "price") ?? (route ? getPriceForRoute(route, "pax_1_5", "gbp") : 0);
   const multiplier = tripType === "round-trip" ? 2 : 1;
   const totalPrice = readNumber(params, "totalPrice") ?? routePrice * multiplier;
   const reservationFee = readNumber(params, "reservationFee") ?? Number((totalPrice * 0.1).toFixed(2));

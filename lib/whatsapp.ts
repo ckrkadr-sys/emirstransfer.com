@@ -1,5 +1,7 @@
-export const WHATSAPP_PHONE = "905000000000";
+import { buildWhatsAppUrl } from "./transferPricing";
+
+export { WHATSAPP_PHONE, buildWhatsAppUrl } from "./transferPricing";
 
 export function createWhatsAppLink(message: string) {
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+  return buildWhatsAppUrl({ message });
 }

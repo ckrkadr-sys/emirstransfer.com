@@ -505,7 +505,11 @@ export const dictionaries = {
       departureDate: "Gidiş Tarihi",
       departureTime: "Gidiş Saati",
       datePlaceholder: "GG.AA.YYYY",
+<<<<<<< HEAD
       passengers: "Yolcu Sayısı",
+=======
+      passengers: "Yolcular",
+>>>>>>> 7430c4a5b2bdcad401c60476a261201bb3adccf4
       search: "Rezervasyon Ara",
       swap: "Kalkış ve varış noktalarını değiştir",
       passengerLabel: (count: number) => `${count} Yolcu`,

@@ -1,0 +1,31 @@
+ ⨯ ./app/globals.css:762:9
+Syntax error: C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\globals.css Unknown word
+
+ [90m 760 | [39m  display[33m:[39m inline-flex[33m;[39m
+ [90m 761 | [39m  align-items[33m:[39m center[33m;[39m
+[1m[31m>[39m[22m[90m 762 | [39m<<<<<<< HEAD
+ [90m     | [39m        [1m[31m^[39m[22m
+ [90m 763 | [39m  gap[33m:[39m 6px[33m;[39m
+ [90m 764 | [39m  color[33m:[39m [36mvar[39m[36m(--navy)[39m[33m;[39m
+ ⨯ ./app/globals.css:762:9
+Syntax error: C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\globals.css Unknown word
+
+ [90m 760 | [39m  display[33m:[39m inline-flex[33m;[39m
+ [90m 761 | [39m  align-items[33m:[39m center[33m;[39m
+[1m[31m>[39m[22m[90m 762 | [39m<<<<<<< HEAD
+ [90m     | [39m        [1m[31m^[39m[22m
+ [90m 763 | [39m  gap[33m:[39m 6px[33m;[39m
+ [90m 764 | [39m  color[33m:[39m [36mvar[39m[36m(--navy)[39m[33m;[39m
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[10].use[2]!C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[10].use[3]!C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+ ⨯ ./app/globals.css:762:9
+Syntax error: C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\globals.css Unknown word
+
+ [90m 760 | [39m  display[33m:[39m inline-flex[33m;[39m
+ [90m 761 | [39m  align-items[33m:[39m center[33m;[39m
+[1m[31m>[39m[22m[90m 762 | [39m<<<<<<< HEAD
+ [90m     | [39m        [1m[31m^[39m[22m
+ [90m 763 | [39m  gap[33m:[39m 6px[33m;[39m
+ [90m 764 | [39m  color[33m:[39m [36mvar[39m[36m(--navy)[39m[33m;[39m
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[14].oneOf[10].use[2]!C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[14].oneOf[10].use[3]!C:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError

@@ -1,8 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { MessageCircle, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
+import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 const initialState = {
   name: "",
@@ -72,7 +73,7 @@ export function ContactBookingForm() {
         />
       </label>
       <button className="button button-whatsapp" type="submit">
-        <MessageCircle size={18} aria-hidden="true" />
+        <WhatsAppBrandIcon />
         Send on WhatsApp
         <Send size={16} aria-hidden="true" />
       </button>

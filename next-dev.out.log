@@ -19,3 +19,17 @@
  GET /routes 200 in 2569ms
  GET /routes 200 in 550ms
  GET / 200 in 359ms
+ GET / 200 in 268ms
+ GET / 200 in 1646ms
+ ✓ Compiled in 7.5s (726 modules)
+ GET / 200 in 1619ms
+ GET / 200 in 526ms
+ ✓ Compiled in 4.5s (740 modules)
+ GET / 200 in 3175ms
+ GET / 200 in 2344ms
+ ✓ Compiled in 2s (726 modules)
+ ✓ Compiled in 4.1s (722 modules)
+ GET / 200 in 1856ms
+ GET / 200 in 617ms
+ ✓ Compiled in 1511ms (722 modules)
+ GET / 200 in 767ms

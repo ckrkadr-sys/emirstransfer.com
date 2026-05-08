@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { ArrowRight, CheckCircle2, MessageCircle, Plane, Search, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Plane, Search, Users } from "lucide-react";
 import {
   buildWhatsAppUrl,
   findRouteMatchByHotelOrDestination,
@@ -14,6 +14,7 @@ import {
   type TransferRouteMatch
 } from "../lib/transferPricing";
 import { currencies, passengerTiers, transferRoutes, type Currency, type PassengerTier, type TransferRoute } from "../lib/transferRoutes";
+import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 type PriceFinderProps = {
   initialRouteId?: string;
@@ -188,7 +189,7 @@ export function PriceFinder({
               No taxi meter, no surprise charges.
             </span>
             <a className="button button-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={18} aria-hidden="true" />
+              <WhatsAppBrandIcon />
               Book Now on WhatsApp
             </a>
           </div>

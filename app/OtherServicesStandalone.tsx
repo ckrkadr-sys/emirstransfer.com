@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Map, Sailboat } from "lucide-react";
 import { CtaBand } from "../components/CtaBand";
 import { PageHero } from "../components/PageHero";
+import { WhatsAppBrandIcon } from "../components/WhatsAppBrandIcon";
 import { type Locale } from "../lib/i18n/config";
 import { dictionaries, type PageDictionary } from "../lib/i18n/dictionaries";
 import { createWhatsAppLink } from "../lib/whatsapp";
@@ -42,6 +43,7 @@ export function OtherServicesStandalone({ locale }: { locale: Locale }) {
                     <h2>{service.title}</h2>
                     <p>{service.description}</p>
                     <a className="button button-primary" href={createWhatsAppLink(service.whatsappMessage)} target="_blank" rel="noopener noreferrer">
+                      <WhatsAppBrandIcon />
                       {service.cta}
                     </a>
                   </div>

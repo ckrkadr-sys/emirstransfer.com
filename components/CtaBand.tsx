@@ -1,5 +1,5 @@
-import { MessageCircle } from "lucide-react";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
+import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 type CtaBandProps = {
   title?: string;
@@ -21,7 +21,7 @@ export function CtaBand({
           <p>{text}</p>
         </div>
         <a className="button button-whatsapp button-large" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-          <MessageCircle size={19} aria-hidden="true" />
+          <WhatsAppBrandIcon />
           {buttonLabel}
         </a>
       </div>

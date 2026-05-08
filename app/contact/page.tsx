@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { MessageCircle } from "lucide-react";
 import { ContactBookingForm } from "../../components/ContactBookingForm";
 import { CtaBand } from "../../components/CtaBand";
 import { PageHero } from "../../components/PageHero";
 import { SectionHeading } from "../../components/SectionHeading";
+import { WhatsAppBrandIcon } from "../../components/WhatsAppBrandIcon";
 import { buildWhatsAppUrl } from "../../lib/transferPricing";
 import { serviceAreas } from "../../lib/transferRoutes";
 
@@ -32,7 +32,7 @@ export default function ContactPage() {
               align="left"
             />
             <a className="button button-whatsapp button-large" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={19} aria-hidden="true" />
+              <WhatsAppBrandIcon />
               Book via WhatsApp
             </a>
             <p className="contact-reassurance">

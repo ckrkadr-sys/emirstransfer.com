@@ -167,9 +167,116 @@ span {
 }
 
 .header-actions {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.language {
+  position: relative;
+}
+
+.language-trigger,
+.whatsapp-link {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid var(--line-light);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 900;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.language-trigger {
+  padding: 0 12px;
+}
+
+.whatsapp-link {
+  width: 46px;
+  padding: 0;
+}
+
+.whatsapp-brand-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.whatsapp-link .whatsapp-brand-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.language-trigger:hover,
+.language-trigger-open,
+.whatsapp-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(224, 189, 114, 0.52);
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--gold-strong);
+}
+
+.language-chevron {
+  transition: transform 180ms ease;
+}
+
+.language-trigger-open .language-chevron {
+  transform: rotate(180deg);
+}
+
+.language-menu {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  z-index: 80;
+  min-width: 172px;
+  border: 1px solid rgba(201, 164, 92, 0.28);
+  border-radius: 14px;
+  background: var(--paper);
+  padding: 8px;
+  color: var(--navy);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+}
+
+.language-option {
+  display: flex;
+  width: 100%;
+  min-height: 42px;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--navy);
+  padding: 0 10px;
+  font-size: 14px;
+  font-weight: 850;
+  text-align: left;
+}
+
+.language-option:hover {
+  background: rgba(201, 164, 92, 0.14);
+}
+
+.language-option.selected {
+  background: var(--navy);
+  color: var(--gold-strong);
+}
+
+.language-code {
+  min-width: 26px;
+  font-weight: 950;
 }
 
 .mobile-menu-button {
@@ -261,6 +368,10 @@ span {
 }
 
 .header-whatsapp {
+  white-space: nowrap;
+}
+
+.header-book {
   white-space: nowrap;
 }
 
@@ -1326,6 +1437,9 @@ span {
 
 @media (max-width: 1080px) {
   .desktop-nav,
+  .language,
+  .whatsapp-link,
+  .header-book,
   .header-whatsapp {
     display: none;
   }
@@ -1345,6 +1459,49 @@ span {
   .mobile-menu nav {
     display: grid;
     gap: 6px;
+  }
+
+  .mobile-language {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mobile-language button {
+    display: flex;
+    min-width: 0;
+    min-height: 54px;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--line-light);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.82);
+    padding: 0 12px;
+    text-align: left;
+  }
+
+  .mobile-language button span {
+    color: var(--gold-strong);
+    font-weight: 950;
+  }
+
+  .mobile-language button small {
+    min-width: 0;
+    color: inherit;
+    font-size: 12px;
+    font-weight: 850;
+  }
+
+  .mobile-language button.selected {
+    border-color: rgba(224, 189, 114, 0.52);
+    background: rgba(224, 189, 114, 0.15);
+    color: var(--white);
+  }
+
+  .mobile-menu-ctas {
+    display: grid;
+    gap: 10px;
   }
 
   .mobile-nav-link {

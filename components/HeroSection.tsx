@@ -1,8 +1,9 @@
 import Image from "next/image";
-import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
 import { ButtonLink } from "./Button";
 import { TrustBadges } from "./TrustBadges";
+import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 export function HeroSection() {
   return (
@@ -21,7 +22,7 @@ export function HeroSection() {
           </p>
           <div className="hero-actions">
             <ButtonLink href={buildWhatsAppUrl()} variant="whatsapp" external>
-              <MessageCircle size={18} aria-hidden="true" />
+              <WhatsAppBrandIcon />
               Book via WhatsApp
             </ButtonLink>
             <ButtonLink href="#price-finder" variant="secondary">

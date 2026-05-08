@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { MessageCircle } from "lucide-react";
 import { serviceAreas } from "../lib/transferRoutes";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
+import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -25,7 +25,7 @@ export function SiteFooter() {
             hotel drop-off and calm WhatsApp booking support.
           </p>
           <a className="button button-whatsapp footer-cta" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-            <MessageCircle size={18} aria-hidden="true" />
+            <WhatsAppBrandIcon />
             Book via WhatsApp
           </a>
         </div>

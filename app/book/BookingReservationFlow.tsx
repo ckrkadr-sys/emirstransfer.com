@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
-import { ArrowLeft, CheckCircle2, CreditCard, Mail, MessageCircle, Plane, UserRound } from "lucide-react";
+import { ArrowLeft, CheckCircle2, CreditCard, Mail, Plane, UserRound } from "lucide-react";
+import { WhatsAppBrandIcon } from "../../components/WhatsAppBrandIcon";
 import { fallbackLocale, type Locale } from "../../lib/i18n/config";
 import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
 import { createWhatsAppLink } from "../../lib/whatsapp";
@@ -313,7 +314,7 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
                 <p>{t.bookPage.success.text}</p>
                 <div className="reservation-actions">
                   <button className="button button-primary" type="button" onClick={() => openWhatsapp(lastMessage)}>
-                    <MessageCircle size={17} aria-hidden="true" />
+                    <WhatsAppBrandIcon />
                     {t.bookPage.success.sendAgain}
                   </button>
                   <Link className="button button-dark" href="/">
@@ -418,7 +419,7 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
                   </span>
                   <button className="button button-primary" type="submit" disabled={isSubmitting || !booking.isPriced}>
                     {isSubmitting ? t.bookPage.form.openingWhatsapp : t.bookPage.form.submit}
-                    <MessageCircle size={17} aria-hidden="true" />
+                    <WhatsAppBrandIcon />
                   </button>
                 </div>
               </form>

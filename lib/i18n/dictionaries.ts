@@ -76,10 +76,10 @@ export const dictionaries = {
     },
     navItems: [
       { label: "Home", href: "/" },
-      { label: "Popular Destinations", href: "#popular-destinations" },
-      { label: "Other Services", href: "/other-services" },
-      { label: "About", href: "#hakkimizda" },
-      { label: "Contact", href: "#iletisim" }
+      { label: "Routes & Prices", href: "/routes" },
+      { label: "Fleet", href: "/fleet" },
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" }
     ],
     common: {
       bookNow: "Book Now",
@@ -450,10 +450,10 @@ export const dictionaries = {
     },
     navItems: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Popüler Destinasyonlar", href: "#popular-destinations" },
-      { label: "Diğer Hizmetler", href: "/diger-hizmetler" },
-      { label: "Hakkımızda", href: "#hakkimizda" },
-      { label: "İletişim", href: "#iletisim" }
+      { label: "Rotalar ve Fiyatlar", href: "/routes" },
+      { label: "Araç Filosu", href: "/fleet" },
+      { label: "Hakkımızda", href: "/about" },
+      { label: "İletişim", href: "/contact" }
     ],
     common: {
       bookNow: "Rezervasyon Yap",
@@ -796,10 +796,10 @@ export const dictionaries = {
     },
     navItems: [
       { label: "Главная", href: "/" },
-      { label: "Популярные направления", href: "#popular-destinations" },
-      { label: "Другие услуги", href: "/diger-hizmetler" },
-      { label: "О нас", href: "#hakkimizda" },
-      { label: "Контакты", href: "#iletisim" }
+      { label: "Маршруты и цены", href: "/routes" },
+      { label: "Автопарк", href: "/fleet" },
+      { label: "О нас", href: "/about" },
+      { label: "Контакты", href: "/contact" }
     ],
     common: {
       bookNow: "Забронировать",
@@ -1140,10 +1140,10 @@ export const dictionaries = {
     },
     navItems: [
       { label: "首页", href: "/" },
-      { label: "热门目的地", href: "#popular-destinations" },
-      { label: "其他服务", href: "/diger-hizmetler" },
-      { label: "关于我们", href: "#hakkimizda" },
-      { label: "联系", href: "#iletisim" }
+      { label: "路线与价格", href: "/routes" },
+      { label: "车队", href: "/fleet" },
+      { label: "关于我们", href: "/about" },
+      { label: "联系", href: "/contact" }
     ],
     common: {
       bookNow: "立即预订",

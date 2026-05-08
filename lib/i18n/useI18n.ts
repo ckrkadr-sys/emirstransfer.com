@@ -6,6 +6,7 @@ import { dictionaries, type PageDictionary } from "./dictionaries";
 
 const storageKey = "emirstransfer-locale";
 const legacyStorageKey = "emirstransfer-language";
+const localeChangeEvent = "emirstransfer:locale-change";
 
 type TranslationParams = Record<string, string | number>;
 
@@ -36,31 +37,48 @@ function normalizeLegacyLocale(value: string | null) {
   return isLocale(normalized) ? normalized : null;
 }
 
+function readStoredLocale() {
+  const storedLocale = window.localStorage.getItem(storageKey);
+  const legacyLocale = normalizeLegacyLocale(window.localStorage.getItem(legacyStorageKey));
+
+  if (isLocale(storedLocale)) {
+    return storedLocale;
+  }
+
+  if (legacyLocale) {
+    window.localStorage.setItem(storageKey, legacyLocale);
+    return legacyLocale;
+  }
+
+  return defaultLocale;
+}
+
 export function useI18n() {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
 
   useEffect(() => {
-    const storedLocale = window.localStorage.getItem(storageKey);
-    const legacyLocale = normalizeLegacyLocale(window.localStorage.getItem(legacyStorageKey));
+    const syncLocale = () => {
+      const nextLocale = readStoredLocale();
+      setLocaleState(nextLocale);
+      document.documentElement.lang = nextLocale;
+    };
 
-    if (isLocale(storedLocale)) {
-      setLocaleState(storedLocale);
-      return;
-    }
+    syncLocale();
+    window.addEventListener("storage", syncLocale);
+    window.addEventListener(localeChangeEvent, syncLocale);
 
-    if (legacyLocale) {
-      setLocaleState(legacyLocale);
-      window.localStorage.setItem(storageKey, legacyLocale);
-      return;
-    }
-
-    setLocaleState(defaultLocale);
+    return () => {
+      window.removeEventListener("storage", syncLocale);
+      window.removeEventListener(localeChangeEvent, syncLocale);
+    };
   }, []);
 
   function setLocale(nextLocale: Locale) {
     setLocaleState(nextLocale);
+    document.documentElement.lang = nextLocale;
     window.localStorage.setItem(storageKey, nextLocale);
     window.localStorage.setItem(legacyStorageKey, nextLocale.toUpperCase());
+    window.dispatchEvent(new Event(localeChangeEvent));
   }
 
   const dictionary = (dictionaries[locale] ?? dictionaries[fallbackLocale]) as PageDictionary;

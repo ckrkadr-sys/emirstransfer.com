@@ -7,5 +7,15 @@
    - Network:      http://172.20.10.5:3000
 
  ✓ Starting...
- ✓ Ready in 8.8s
+ ✓ Ready in 6.4s
  ○ Compiling / ...
+ ✓ Compiled / in 4.1s (699 modules)
+ GET / 200 in 6315ms
+ GET / 200 in 622ms
+ GET / 200 in 793ms
+ GET / 200 in 2631ms
+ ○ Compiling /routes ...
+ ✓ Compiled /routes in 1293ms (709 modules)
+ GET /routes 200 in 2569ms
+ GET /routes 200 in 550ms
+ GET / 200 in 359ms

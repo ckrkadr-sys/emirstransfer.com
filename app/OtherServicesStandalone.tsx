@@ -1,10 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import { Map, Sailboat } from "lucide-react";
 import { CtaBand } from "../components/CtaBand";
 import { PageHero } from "../components/PageHero";
 import { WhatsAppBrandIcon } from "../components/WhatsAppBrandIcon";
-import { type Locale } from "../lib/i18n/config";
-import { dictionaries, type PageDictionary } from "../lib/i18n/dictionaries";
+import { useI18n } from "../lib/i18n/useI18n";
 import { createWhatsAppLink } from "../lib/whatsapp";
 
 const serviceCards: Array<{ key: "minibusTour" | "boatRental"; image: string; icon: typeof Map }> = [
@@ -12,12 +13,8 @@ const serviceCards: Array<{ key: "minibusTour" | "boatRental"; image: string; ic
   { key: "boatRental", image: "/images/private-tour-boat.png", icon: Sailboat }
 ];
 
-function getDictionary(locale: Locale): PageDictionary {
-  return dictionaries[locale] as PageDictionary;
-}
-
-export function OtherServicesStandalone({ locale }: { locale: Locale }) {
-  const t = getDictionary(locale);
+export function OtherServicesStandalone() {
+  const { dictionary: t } = useI18n();
 
   return (
     <main className="services-page">

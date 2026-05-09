@@ -1,3 +1,6 @@
+"use client";
+
+import { useI18n } from "../lib/i18n/useI18n";
 import { overviewRouteIds, passengerTiers, transferRoutes, type Currency } from "../lib/transferRoutes";
 import { formatTransferPrice, getPriceForRoute } from "../lib/transferPricing";
 import { SectionHeading } from "./SectionHeading";
@@ -9,18 +12,9 @@ type PriceOverviewTableProps = {
   allRoutes?: boolean;
 };
 
-const columnLabels = {
-  pax_1_5: "Vito 1-5",
-  pax_6_12: "Sprinter 6-12",
-  pax_12_16: "Sprinter 12-16"
-};
-
-export function PriceOverviewTable({
-  title = "Quick Price Overview",
-  text = "A compact view of fixed private transfer prices from Dalaman Airport.",
-  currency = "gbp",
-  allRoutes = false
-}: PriceOverviewTableProps) {
+export function PriceOverviewTable({ title, text, currency = "gbp", allRoutes = false }: PriceOverviewTableProps) {
+  const { dictionary } = useI18n();
+  const copy = dictionary.site.priceOverview;
   const routes = allRoutes
     ? transferRoutes
     : overviewRouteIds
@@ -30,15 +24,15 @@ export function PriceOverviewTable({
   return (
     <section className="section section-white">
       <div className="container">
-        <SectionHeading eyebrow="Fixed Pricing" title={title} text={text} />
+        <SectionHeading eyebrow={copy.eyebrow} title={title ?? copy.title} text={text ?? copy.text} />
         <div className="price-table-shell">
           <table className="price-table">
             <thead>
               <tr>
-                <th scope="col">Route</th>
+                <th scope="col">{copy.route}</th>
                 {passengerTiers.map((tier) => (
                   <th scope="col" key={tier}>
-                    {columnLabels[tier]}
+                    {copy.columns[tier]}
                   </th>
                 ))}
               </tr>

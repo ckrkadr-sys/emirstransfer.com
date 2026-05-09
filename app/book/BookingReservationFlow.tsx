@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useId, useState } from "react";
 import { ArrowLeft, CheckCircle2, CreditCard, Mail, Plane, UserRound } from "lucide-react";
 import { WhatsAppBrandIcon } from "../../components/WhatsAppBrandIcon";
-import { fallbackLocale, type Locale } from "../../lib/i18n/config";
-import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
+import { useI18n } from "../../lib/i18n/useI18n";
+import { type Locale } from "../../lib/i18n/config";
+import { type PageDictionary } from "../../lib/i18n/dictionaries";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
 export type BookingPageData = {
@@ -49,10 +50,6 @@ const initialFormState: ReservationFormState = {
   pickupAddress: "",
   notes: ""
 };
-
-function getDictionary(locale: Locale): PageDictionary {
-  return (dictionaries[locale] ?? dictionaries[fallbackLocale]) as PageDictionary;
-}
 
 function getLocationLabel(t: PageDictionary, value: string) {
   return t.destinations[value as keyof PageDictionary["destinations"]] ?? value;
@@ -237,8 +234,8 @@ function BookingSummary({ booking, t }: { booking: BookingPageData; t: PageDicti
   );
 }
 
-export function BookingReservationFlow({ locale, booking }: { locale: Locale; booking: BookingPageData }) {
-  const t = useMemo(() => getDictionary(locale), [locale]);
+export function BookingReservationFlow({ booking }: { booking: BookingPageData }) {
+  const { locale, dictionary: t } = useI18n();
   const [form, setForm] = useState<ReservationFormState>(initialFormState);
   const [errors, setErrors] = useState<ReservationFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);

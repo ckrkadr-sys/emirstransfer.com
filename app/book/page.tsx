@@ -1,4 +1,3 @@
-import { defaultLocale, fallbackLocale, isLocale, type Locale } from "../../lib/i18n/config";
 import { findRouteByHotelOrDestination, getPriceForRoute } from "../../lib/transferPricing";
 import { BookingReservationFlow, type BookingPageData } from "./BookingReservationFlow";
 
@@ -19,11 +18,6 @@ function readNumber(params: Record<string, string | string[] | undefined>, key: 
 function findRoute(from: string, to: string) {
   const destination = from === "Dalaman Airport" ? to : from;
   return findRouteByHotelOrDestination(destination);
-}
-
-function getLocale(params: Record<string, string | string[] | undefined>): Locale {
-  const localeParam = readParam(params, "locale");
-  return isLocale(localeParam) ? localeParam : defaultLocale;
 }
 
 export default async function BookPage({ searchParams }: BookPageProps) {
@@ -54,5 +48,5 @@ export default async function BookPage({ searchParams }: BookPageProps) {
     isPriced: Boolean(route || totalPrice > 0)
   };
 
-  return <BookingReservationFlow locale={getLocale(params) ?? fallbackLocale} booking={booking} />;
+  return <BookingReservationFlow booking={booking} />;
 }

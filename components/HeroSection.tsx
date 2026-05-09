@@ -1,11 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useI18n } from "../lib/i18n/useI18n";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
 import { ButtonLink } from "./Button";
 import { TrustBadges } from "./TrustBadges";
 import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
 export function HeroSection() {
+  const { dictionary } = useI18n();
+  const copy = dictionary.site.home.hero;
+
   return (
     <section className="hero">
       <div className="hero-background" aria-hidden="true" />
@@ -13,45 +19,42 @@ export function HeroSection() {
         <div className="hero-copy">
           <span className="eyebrow">
             <Sparkles size={15} aria-hidden="true" />
-            Dalaman Airport VIP Transfer
+            {copy.eyebrow}
           </span>
-          <h1>Luxury VIP Transfers from Dalaman Airport</h1>
-          <p>
-            Fixed prices, Mercedes VIP vehicles, hotel drop-off, and 24/7 WhatsApp support across Fethiye,
-            Ölüdeniz, Göcek, Faralya, Marmaris and more.
-          </p>
+          <h1>{copy.title}</h1>
+          <p>{copy.text}</p>
           <div className="hero-actions">
             <ButtonLink href={buildWhatsAppUrl()} variant="whatsapp" external>
               <WhatsAppBrandIcon />
-              Book via WhatsApp
+              {copy.bookButton}
             </ButtonLink>
             <ButtonLink href="#price-finder" variant="secondary">
-              Check Prices
+              {copy.checkPricesButton}
               <ArrowRight size={18} aria-hidden="true" />
             </ButtonLink>
           </div>
           <TrustBadges />
         </div>
 
-        <div className="hero-visual" aria-label="Mercedes VIP transfer vehicle">
+        <div className="hero-visual" aria-label={copy.vehicleAlt}>
           <div className="hero-vehicle-frame">
             <Image
               src="/images/mercedes-benz-sprinter-fleet.png"
-              alt="Mercedes VIP transfer vehicle"
+              alt={copy.vehicleAlt}
               fill
               priority
               sizes="(max-width: 900px) 92vw, 44vw"
             />
           </div>
           <div className="hero-floating-card hero-floating-card-top">
-            <span>From</span>
-            <strong>£35</strong>
-            <small>Göcek fixed route</small>
+            <span>{copy.priceCardLabel}</span>
+            <strong>{copy.priceCardValue}</strong>
+            <small>{copy.priceCardText}</small>
           </div>
           <div className="hero-floating-card hero-floating-card-bottom">
-            <span>Support</span>
-            <strong>24/7</strong>
-            <small>WhatsApp booking</small>
+            <span>{copy.supportCardLabel}</span>
+            <strong>{copy.supportCardValue}</strong>
+            <small>{copy.supportCardText}</small>
           </div>
         </div>
       </div>

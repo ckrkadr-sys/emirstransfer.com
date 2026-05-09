@@ -1,39 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { useI18n } from "../lib/i18n/useI18n";
 import { serviceAreas } from "../lib/transferRoutes";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
 import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
-const quickLinks = [
-  { href: "/", label: "Home" },
-  { href: "/routes", label: "Routes & Prices" },
-  { href: "/fleet", label: "Fleet" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" }
-];
-
 export function SiteFooter() {
+  const { dictionary, t } = useI18n();
+  const copy = dictionary.site.footer;
+
   return (
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand-column">
           <Link className="brand footer-brand" href="/">
-            <span className="brand-mark">ET</span>
-            <span className="brand-text">Emirs Transfer</span>
+            <span className="brand-mark">{dictionary.brand.mark}</span>
+            <span className="brand-text">{dictionary.brand.name}</span>
           </Link>
-          <p>
-            Private VIP airport transfers from Dalaman Airport with fixed prices, Mercedes vehicles,
-            hotel drop-off and calm WhatsApp booking support.
-          </p>
+          <p>{copy.description}</p>
           <a className="button button-whatsapp footer-cta" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
             <WhatsAppBrandIcon />
-            Book via WhatsApp
+            {dictionary.site.common.bookViaWhatsApp}
           </a>
         </div>
 
         <div>
-          <h2>Quick Links</h2>
+          <h2>{copy.quickLinks}</h2>
           <div className="footer-links">
-            {quickLinks.map((item) => (
+            {dictionary.navItems.map((item) => (
               <Link href={item.href} key={item.href}>
                 {item.label}
               </Link>
@@ -42,7 +37,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2>Service Areas</h2>
+          <h2>{copy.serviceAreas}</h2>
           <div className="service-area-list">
             {serviceAreas.map((area) => (
               <span key={area}>{area}</span>
@@ -51,20 +46,17 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2>Booking</h2>
-          <p className="footer-small">
-            Share your arrival date, flight number, hotel name and passenger count. We will confirm your private transfer
-            clearly via WhatsApp.
-          </p>
+          <h2>{copy.bookingTitle}</h2>
+          <p className="footer-small">{copy.bookingText}</p>
           <a className="footer-text-link" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-            Get instant price
+            {copy.textLink}
           </a>
         </div>
       </div>
 
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Emirs Transfer. All rights reserved.</span>
-        <span>Luxury private Dalaman Airport transfers.</span>
+        <span>{t("site.footer.copyright", { year: new Date().getFullYear() })}</span>
+        <span>{copy.tagline}</span>
       </div>
     </footer>
   );

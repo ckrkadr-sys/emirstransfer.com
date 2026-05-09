@@ -2,6 +2,7 @@
 
 import { useId, useMemo, useState } from "react";
 import { ArrowRight, CheckCircle2, Plane, Search, Users } from "lucide-react";
+import { useI18n } from "../lib/i18n/useI18n";
 import {
   buildWhatsAppUrl,
   findRouteMatchByHotelOrDestination,
@@ -41,12 +42,9 @@ function getInitialQuery(route: TransferRoute, initialQuery?: string) {
   return route.id === "oludeniz-hotels" ? "Liberty Lykia" : route.shortName;
 }
 
-export function PriceFinder({
-  initialRouteId,
-  initialQuery,
-  heading = "Find Your Hotel Transfer Price",
-  subheading = "Search by hotel or region and see the fixed private transfer price instantly."
-}: PriceFinderProps) {
+export function PriceFinder({ initialRouteId, initialQuery, heading, subheading }: PriceFinderProps) {
+  const { dictionary } = useI18n();
+  const copy = dictionary.site.priceFinder;
   const defaultRoute = useMemo(() => getDefaultRoute(initialRouteId), [initialRouteId]);
   const [query, setQuery] = useState(() => getInitialQuery(defaultRoute, initialQuery));
   const [tier, setTier] = useState<PassengerTier>("pax_1_5");
@@ -80,30 +78,30 @@ export function PriceFinder({
   return (
     <section className="price-finder" id="price-finder" aria-labelledby="price-finder-title">
       <div className="price-finder-intro">
-        <span className="eyebrow">Smart Price Finder</span>
-        <h2 id="price-finder-title">{heading}</h2>
-        <p>{subheading}</p>
+        <span className="eyebrow">{copy.eyebrow}</span>
+        <h2 id="price-finder-title">{heading ?? copy.title}</h2>
+        <p>{subheading ?? copy.text}</p>
       </div>
 
       <div className="price-finder-panel">
         <div className="finder-fields">
           <label className="finder-field finder-field-static">
-            <span>From</span>
+            <span>{copy.fromLabel}</span>
             <strong>
               <Plane size={18} aria-hidden="true" />
-              Dalaman Airport
+              {dictionary.destinations["Dalaman Airport"]}
             </strong>
           </label>
 
           <label className="finder-field finder-field-search">
-            <span>Hotel or Region</span>
+            <span>{copy.hotelLabel}</span>
             <div className="finder-input-shell">
               <Search size={18} aria-hidden="true" />
               <input
                 type="search"
                 value={query}
                 list={optionsId}
-                placeholder="Search hotel or region"
+                placeholder={copy.hotelPlaceholder}
                 onChange={(event) => setQuery(event.target.value)}
               />
               <datalist id={optionsId}>
@@ -115,8 +113,8 @@ export function PriceFinder({
           </label>
 
           <div className="finder-field">
-            <span>Passengers</span>
-            <div className="segmented-control" aria-label="Passenger tier">
+            <span>{copy.passengersLabel}</span>
+            <div className="segmented-control" aria-label={copy.passengersLabel}>
               {passengerTiers.map((passengerTier) => (
                 <button
                   type="button"
@@ -132,8 +130,8 @@ export function PriceFinder({
           </div>
 
           <div className="finder-field">
-            <span>Currency</span>
-            <div className="segmented-control segmented-control-currency" aria-label="Currency">
+            <span>{copy.currencyLabel}</span>
+            <div className="segmented-control segmented-control-currency" aria-label={copy.currencyLabel}>
               {currencies.map((currencyOption) => (
                 <button
                   type="button"
@@ -152,7 +150,7 @@ export function PriceFinder({
           {activeRoute ? (
             <>
               <div className="result-route-line">
-                <span>{isExample ? "Example route" : "Selected route"}</span>
+                <span>{isExample ? copy.exampleRoute : copy.selectedRoute}</span>
                 <strong>
                   {activeRoute.origin}
                   <ArrowRight size={18} aria-hidden="true" />
@@ -161,36 +159,34 @@ export function PriceFinder({
               </div>
 
               <div className="result-detail-grid">
-                <span>Region</span>
+                <span>{copy.region}</span>
                 <strong>{activeRoute.name}</strong>
-                <span>Vehicle</span>
+                <span>{copy.vehicle}</span>
                 <strong>{vehicle}</strong>
-                <span>Passengers</span>
+                <span>{copy.passengersLabel}</span>
                 <strong>{passengerTierLabels[tier]}</strong>
-                <span>Fixed price</span>
+                <span>{copy.fixedPrice}</span>
                 <strong className="result-price">{formatTransferPrice(price ?? 0, currency)}</strong>
               </div>
             </>
           ) : (
             <>
               <div className="result-route-line">
-                <span>No fixed route matched</span>
-                <strong>{destinationLabel || "Unknown destination"}</strong>
+                <span>{copy.noFixedRouteMatched}</span>
+                <strong>{destinationLabel || copy.unknownDestination}</strong>
               </div>
-              <p className="empty-result-copy">
-                Send your hotel or destination on WhatsApp and we will confirm the exact private transfer price.
-              </p>
+              <p className="empty-result-copy">{copy.emptyResultCopy}</p>
             </>
           )}
 
           <div className="finder-result-footer">
             <span>
               <CheckCircle2 size={16} aria-hidden="true" />
-              No taxi meter, no surprise charges.
+              {copy.noSurprise}
             </span>
             <a className="button button-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
               <WhatsAppBrandIcon />
-              Book Now on WhatsApp
+              {copy.bookNow}
             </a>
           </div>
         </article>

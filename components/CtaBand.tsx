@@ -1,3 +1,6 @@
+"use client";
+
+import { useI18n } from "../lib/i18n/useI18n";
 import { buildWhatsAppUrl } from "../lib/transferPricing";
 import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
 
@@ -7,22 +10,21 @@ type CtaBandProps = {
   buttonLabel?: string;
 };
 
-export function CtaBand({
-  title = "Ready to book your private Dalaman Airport transfer?",
-  text = "Send your hotel, flight number and passenger count. Emirs Transfer will confirm your fixed price quickly.",
-  buttonLabel = "Get Instant Price on WhatsApp"
-}: CtaBandProps) {
+export function CtaBand({ title, text, buttonLabel }: CtaBandProps) {
+  const { dictionary } = useI18n();
+  const copy = dictionary.site.cta;
+
   return (
     <section className="cta-band">
       <div className="container cta-band-inner">
         <div>
-          <span className="eyebrow">Private VIP Transfer</span>
-          <h2>{title}</h2>
-          <p>{text}</p>
+          <span className="eyebrow">{copy.eyebrow}</span>
+          <h2>{title ?? copy.title}</h2>
+          <p>{text ?? copy.text}</p>
         </div>
         <a className="button button-whatsapp button-large" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
           <WhatsAppBrandIcon />
-          {buttonLabel}
+          {buttonLabel ?? copy.button}
         </a>
       </div>
     </section>

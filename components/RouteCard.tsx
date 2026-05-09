@@ -1,4 +1,7 @@
+"use client";
+
 import { ArrowRight, MapPin } from "lucide-react";
+import { useI18n } from "../lib/i18n/useI18n";
 import { type Currency, type TransferRoute } from "../lib/transferRoutes";
 import { formatTransferPrice, getStartingPrice } from "../lib/transferPricing";
 
@@ -8,6 +11,9 @@ type RouteCardProps = {
 };
 
 export function RouteCard({ route, currency = "gbp" }: RouteCardProps) {
+  const { dictionary, t } = useI18n();
+  const copy = dictionary.site.routeCard;
+
   return (
     <article className="route-card">
       <div className="route-card-icon">
@@ -19,9 +25,11 @@ export function RouteCard({ route, currency = "gbp" }: RouteCardProps) {
         <p>{route.destinations.join(" / ")}</p>
       </div>
       <div className="route-card-footer">
-        <strong>from {formatTransferPrice(getStartingPrice(route, currency), currency)}</strong>
-        <a href={`/routes?route=${route.id}#price-finder`} aria-label={`Check prices for ${route.name}`}>
-          Check route
+        <strong>
+          {copy.from} {formatTransferPrice(getStartingPrice(route, currency), currency)}
+        </strong>
+        <a href={`/routes?route=${route.id}#price-finder`} aria-label={t("site.routeCard.checkRouteAria", { route: route.name })}>
+          {copy.checkRoute}
           <ArrowRight size={16} aria-hidden="true" />
         </a>
       </div>

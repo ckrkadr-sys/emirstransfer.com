@@ -1,15 +1,17 @@
+"use client";
+
+import { useI18n } from "../lib/i18n/useI18n";
 import { transferRoutes } from "../lib/transferRoutes";
 import { SectionHeading } from "./SectionHeading";
 
 export function RouteHotelList() {
+  const { dictionary } = useI18n();
+  const copy = dictionary.site.routeHotels;
+
   return (
     <section className="section section-white">
       <div className="container">
-        <SectionHeading
-          eyebrow="Hotel Coverage"
-          title="Hotel lists grouped by region"
-          text="Search by hotel in the price finder, or browse the fixed-price zones below."
-        />
+        <SectionHeading eyebrow={copy.eyebrow} title={copy.title} text={copy.text} />
         <div className="hotel-region-grid">
           {transferRoutes.map((route) => (
             <article className="hotel-region-card" key={route.id}>
@@ -22,7 +24,7 @@ export function RouteHotelList() {
                   ))}
                 </ul>
               ) : (
-                <p className="hotel-empty">Hotel list coming soon. Search Marmaris or İçmeler to use this fixed route.</p>
+                <p className="hotel-empty">{copy.empty}</p>
               )}
             </article>
           ))}

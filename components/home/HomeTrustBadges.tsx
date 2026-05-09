@@ -1,21 +1,22 @@
 "use client";
 
 import { BadgeCheck, CircleDollarSign, Handshake, Plane } from "lucide-react";
-import { useI18n } from "../lib/i18n/useI18n";
+import { useI18n } from "../../lib/i18n/useI18n";
 
 const badgeIcons = [CircleDollarSign, Plane, Handshake, BadgeCheck];
 
-export function TrustBadges() {
+export function HomeTrustBadges() {
   const { dictionary } = useI18n();
-  const badges = dictionary.site.home.trustBadges;
 
   return (
-    <div className="trust-badges" aria-label={dictionary.a11y.transferHighlights}>
-      {badges.map((label, index) => {
+    <div className="home-trust-badges" aria-label={dictionary.a11y.transferHighlights}>
+      {dictionary.site.home.trustBadges.map((label, index) => {
         const Icon = badgeIcons[index] ?? BadgeCheck;
         return (
           <span key={label}>
-            <Icon size={16} aria-hidden="true" />
+            <span className="home-trust-icon">
+              <Icon size={15} aria-hidden="true" />
+            </span>
             {label}
           </span>
         );

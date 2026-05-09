@@ -1,4 +1,6 @@
-﻿const faqs = [
+import { siteDictionaries } from "./siteDictionaries";
+
+const faqs = [
   {
     question: "How do I book a transfer?",
     answer:
@@ -53,6 +55,7 @@
 
 export const dictionaries = {
   en: {
+    site: siteDictionaries.en,
     seo: {
       title: "EMIRSTRANSFER.COM | Dalaman Airport VIP Transfer to Fethiye, Kalkan & Kas",
       description:
@@ -427,6 +430,7 @@ export const dictionaries = {
     }
   },
   tr: {
+    site: siteDictionaries.tr,
     seo: {
       title: "EMİRSTRANSFER.COM | Dalaman Havalimanı VIP Transfer",
       description:
@@ -773,6 +777,7 @@ export const dictionaries = {
     }
   },
   ru: {
+    site: siteDictionaries.ru,
     seo: {
       title: "EMİRSTRANSFER.COM | VIP-трансфер из аэропорта Даламан",
       description:
@@ -1117,6 +1122,7 @@ export const dictionaries = {
     }
   },
   zh: {
+    site: siteDictionaries.zh,
     seo: {
       title: "EMİRSTRANSFER.COM | 达拉曼机场VIP接送",
       description:

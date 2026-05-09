@@ -5,7 +5,7 @@ import { Luggage, ShieldCheck, Users } from "lucide-react";
 import { useI18n } from "../lib/i18n/useI18n";
 import { SectionHeading } from "./SectionHeading";
 
-const vehicleImages = ["/images/minibus-city-tour-sprinter.png", "/images/mercedes-benz-sprinter-fleet.png"];
+const vehicleImages = ["/images/home/vehicle-vito.png", "/images/mercedes-benz-sprinter-fleet.png"];
 const pointIcons = [Luggage, ShieldCheck, Users];
 
 export function VehicleOptions({ showHeading = true }: { showHeading?: boolean }) {

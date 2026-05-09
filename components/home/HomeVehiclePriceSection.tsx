@@ -6,7 +6,7 @@ import { formatTransferPrice, getPriceForRoute } from "../../lib/transferPricing
 import { passengerTiers } from "../../lib/transferRoutes";
 import { getHomeRouteName, homeOverviewRoutes } from "./homeData";
 
-const vehicleImages = ["/images/minibus-city-tour-sprinter.png", "/images/mercedes-benz-sprinter-fleet.png"];
+const vehicleImages = ["/images/home/vehicle-vito.png", "/images/mercedes-benz-sprinter-fleet.png"];
 
 export function HomeVehiclePriceSection() {
   const { dictionary } = useI18n();

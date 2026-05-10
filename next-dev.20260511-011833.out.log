@@ -1,0 +1,21 @@
+
+> emirstransfer-com@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.104:3000
+
+ ✓ Starting...
+ ✓ Ready in 7.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.1s (601 modules)
+ GET / 200 in 8358ms
+ GET / 200 in 523ms
+ GET / 200 in 633ms
+ ○ Compiling /diger-hizmetler ...
+ ✓ Compiled /diger-hizmetler in 2s (616 modules)
+ GET /diger-hizmetler 200 in 3487ms
+ GET / 200 in 497ms
+ GET / 200 in 374ms
+ GET / 200 in 564ms

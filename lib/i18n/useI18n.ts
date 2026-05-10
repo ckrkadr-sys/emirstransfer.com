@@ -57,6 +57,10 @@ export function useI18n() {
     setLocaleState(defaultLocale);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   function setLocale(nextLocale: Locale) {
     setLocaleState(nextLocale);
     window.localStorage.setItem(storageKey, nextLocale);

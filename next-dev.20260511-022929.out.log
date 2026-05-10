@@ -1,0 +1,33 @@
+
+> emirstransfer-com@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.104:3000
+
+ ✓ Starting...
+ ✓ Ready in 6.2s
+ ○ Compiling /routes/[slug] ...
+ ✓ Compiled /routes/[slug] in 11.3s (687 modules)
+ GET / 200 in 13740ms
+ GET /routes/dalaman-airport-to-calis-hotels 200 in 16363ms
+ GET / 200 in 771ms
+ ✓ Compiled in 854ms (350 modules)
+ GET / 200 in 925ms
+ ✓ Compiled in 906ms (611 modules)
+ GET / 200 in 1470ms
+ ✓ Compiled in 1363ms (625 modules)
+ GET / 200 in 447ms
+ GET / 200 in 712ms
+ ✓ Compiled in 1136ms (625 modules)
+ GET / 200 in 465ms
+ GET / 200 in 156ms
+ ✓ Compiled in 779ms (625 modules)
+ GET / 200 in 357ms
+ GET / 200 in 121ms
+ GET / 200 in 597ms
+ ✓ Compiled in 1213ms (625 modules)
+ GET / 200 in 644ms
+ GET / 200 in 191ms
+[?25h

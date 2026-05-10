@@ -13,6 +13,10 @@
   --border-soft: rgba(0, 0, 0, 0.07);
   --shadow-soft: 0 18px 44px rgba(36, 23, 47, 0.1);
   --shadow-card: 0 12px 34px rgba(36, 23, 47, 0.08);
+  --font-primary: "Manrope", "Noto Sans SC", "Microsoft YaHei", "PingFang SC", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-chinese: "Noto Sans SC", "Microsoft YaHei", "PingFang SC", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -27,15 +31,8 @@ body {
   margin: 0;
   background: var(--surface-warm);
   color: var(--text-dark);
-  font-family:
-    Inter,
-    Manrope,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family: var(--font-primary);
+  font-weight: 500;
   overflow-x: hidden;
 }
 
@@ -46,8 +43,10 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
+  font-family: var(--font-primary);
 }
 
 button,
@@ -515,7 +514,10 @@ img {
 }
 
 .hero-booking {
-  width: min(1120px, 100%);
+  position: relative;
+  left: 50%;
+  width: min(1288px, calc(100vw - 48px));
+  transform: translateX(-50%);
   margin: 32px auto 0;
 }
 
@@ -1113,16 +1115,6 @@ img {
   font-size: 13px;
   font-weight: 800;
   line-height: 1.5;
-}
-
-.hotel-route-detail-link {
-  color: var(--brand-primary);
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.hotel-route-detail-link:hover {
-  color: var(--brand-primary-dark);
 }
 
 .result-actions {
@@ -2615,6 +2607,9 @@ img {
   }
 
   .hero-booking {
+    left: auto;
+    width: 100%;
+    transform: none;
     margin-top: 24px;
   }
 
@@ -2843,5 +2838,264 @@ img {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Premium multilingual typography system */
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-primary);
+}
+
+body {
+  font-weight: 500;
+}
+
+p {
+  font-weight: 400;
+}
+
+html[lang="zh"] body,
+html[lang="zh-CN"] body,
+html[lang="zh-TW"] body,
+html[lang="zh"] button,
+html[lang="zh-CN"] button,
+html[lang="zh-TW"] button,
+html[lang="zh"] input,
+html[lang="zh-CN"] input,
+html[lang="zh-TW"] input,
+html[lang="zh"] select,
+html[lang="zh-CN"] select,
+html[lang="zh-TW"] select,
+html[lang="zh"] textarea,
+html[lang="zh-CN"] textarea,
+html[lang="zh-TW"] textarea {
+  font-family: var(--font-chinese);
+}
+
+.hero-title,
+h1 {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+html[lang="zh"] .hero-title,
+html[lang="zh-CN"] .hero-title,
+html[lang="zh-TW"] .hero-title,
+html[lang="zh"] h1,
+html[lang="zh-CN"] h1,
+html[lang="zh-TW"] h1 {
+  font-family: var(--font-chinese);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.nav-link,
+nav a,
+.navbar a,
+.nav-pill,
+.desktop-nav a,
+.mobile-menu nav a {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.logo-text,
+.brand-name,
+.brand,
+.brand-mark {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+button,
+.btn,
+.button,
+.cta-button,
+.search-button,
+.service-card a {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+html[lang="zh"] button,
+html[lang="zh-CN"] button,
+html[lang="zh-TW"] button,
+html[lang="zh"] .btn,
+html[lang="zh-CN"] .btn,
+html[lang="zh-TW"] .btn,
+html[lang="zh"] .button,
+html[lang="zh-CN"] .button,
+html[lang="zh-TW"] .button,
+html[lang="zh"] .cta-button,
+html[lang="zh-CN"] .cta-button,
+html[lang="zh-TW"] .cta-button,
+html[lang="zh"] .search-button,
+html[lang="zh-CN"] .search-button,
+html[lang="zh-TW"] .search-button,
+html[lang="zh"] .service-card a,
+html[lang="zh-CN"] .service-card a,
+html[lang="zh-TW"] .service-card a {
+  font-family: var(--font-chinese);
+  letter-spacing: 0;
+}
+
+.form-label,
+.booking-label,
+.field > span,
+.reservation-field > span,
+.result-summary-grid span,
+.result-price-grid span,
+.booking-summary-list span,
+.booking-summary-prices span,
+.route-price-table th {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.booking-field-value,
+.booking-field,
+.booking-field input,
+.booking-field select,
+.form-control,
+.selected-location,
+.formatted-input-value,
+.passenger-value,
+.price-text,
+.field-control input,
+.field-control select,
+.result-summary-grid strong,
+.result-price-grid strong,
+.booking-summary-list strong,
+.booking-summary-prices strong,
+.hotel-price-tier-list span,
+.hotel-price-tier-list strong,
+.route-price-table td,
+.reservation-field input,
+.reservation-field textarea {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.section-heading h2,
+.faq-intro h2,
+.fleet-copy h2,
+.cta-banner h2,
+.route-card h3,
+.feature-card h3,
+.why-item h3,
+.step-card h3,
+.service-card h2,
+.service-card h3,
+.result-card-head h3,
+.route-index-card h2,
+.route-detail-section-head h2,
+.route-detail-cta h2,
+.booking-summary-card h2,
+.reservation-form-head h2,
+.reservation-success-card h2,
+.footer h3,
+.faq-list summary {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.eyebrow,
+.route-label,
+.service-badge,
+.hotel-match-badge,
+.language-code,
+.step-number,
+.guest > span,
+.route-detail-route-line,
+.route-detail-secondary-link,
+.route-index-card .route-footer span,
+.route-footer a,
+.fleet-vehicle-content span {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.hero-trust span,
+.route-meta,
+.fleet-list li,
+.booking-note,
+.hotel-match-route,
+.field-error,
+.hotel-large-group-note,
+.booking-summary-warning,
+.booking-payment-note,
+.booking-contact-strip,
+.reservation-field small,
+.footer a,
+.footer span,
+.guest small {
+  font-weight: 500;
+}
+
+.hotel-match-title {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+html[lang="zh"] .nav-link,
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-TW"] .nav-link,
+html[lang="zh"] nav a,
+html[lang="zh-CN"] nav a,
+html[lang="zh-TW"] nav a,
+html[lang="zh"] .navbar a,
+html[lang="zh-CN"] .navbar a,
+html[lang="zh-TW"] .navbar a,
+html[lang="zh"] .nav-pill,
+html[lang="zh-CN"] .nav-pill,
+html[lang="zh-TW"] .nav-pill,
+html[lang="zh"] .brand,
+html[lang="zh-CN"] .brand,
+html[lang="zh-TW"] .brand,
+html[lang="zh"] .brand-mark,
+html[lang="zh-CN"] .brand-mark,
+html[lang="zh-TW"] .brand-mark,
+html[lang="zh"] .field > span,
+html[lang="zh-CN"] .field > span,
+html[lang="zh-TW"] .field > span,
+html[lang="zh"] .reservation-field > span,
+html[lang="zh-CN"] .reservation-field > span,
+html[lang="zh-TW"] .reservation-field > span,
+html[lang="zh"] .booking-field-value,
+html[lang="zh-CN"] .booking-field-value,
+html[lang="zh-TW"] .booking-field-value,
+html[lang="zh"] .selected-location,
+html[lang="zh-CN"] .selected-location,
+html[lang="zh-TW"] .selected-location,
+html[lang="zh"] .price-text,
+html[lang="zh-CN"] .price-text,
+html[lang="zh-TW"] .price-text {
+  letter-spacing: 0;
+}
+
+@media (max-width: 768px) {
+  .hero-title,
+  h1 {
+    font-size: clamp(2.4rem, 10vw, 4rem);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+  }
+
+  html[lang="zh"] .hero-title,
+  html[lang="zh-CN"] .hero-title,
+  html[lang="zh-TW"] .hero-title,
+  html[lang="zh"] h1,
+  html[lang="zh-CN"] h1,
+  html[lang="zh-TW"] h1 {
+    letter-spacing: -0.01em;
+    line-height: 1.15;
   }
 }

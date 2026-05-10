@@ -172,7 +172,7 @@ export const dictionaries = {
         returnTimeRequired: "Please select a return time.",
         pastDate: "Please select today or a future date.",
         returnBeforeDeparture: "Return date cannot be before the departure date.",
-        passengersRequired: "Please select between 1 and 8 passengers."
+        passengersRequired: "Please select between 1 and 20 passengers."
       }
     },
     hero: {
@@ -547,7 +547,7 @@ export const dictionaries = {
         returnTimeRequired: "Lütfen dönüş saati seçin.",
         pastDate: "Lütfen bugün veya ileri bir tarih seçin.",
         returnBeforeDeparture: "Dönüş tarihi gidiş tarihinden önce olamaz.",
-        passengersRequired: "Lütfen 1 ile 8 arasında yolcu seçin."
+        passengersRequired: "Lütfen 1 ile 20 arasında yolcu seçin."
       }
     },
     hero: {
@@ -892,7 +892,7 @@ export const dictionaries = {
         returnTimeRequired: "Выберите время возвращения.",
         pastDate: "Выберите сегодняшнюю или будущую дату.",
         returnBeforeDeparture: "Дата возвращения не может быть раньше даты выезда.",
-        passengersRequired: "Выберите от 1 до 8 пассажиров."
+        passengersRequired: "Выберите от 1 до 20 пассажиров."
       }
     },
     hero: {
@@ -1239,7 +1239,7 @@ export const dictionaries = {
         returnTimeRequired: "请选择返回时间。",
         pastDate: "请选择今天或未来日期。",
         returnBeforeDeparture: "返回日期不能早于出发日期。",
-        passengersRequired: "请选择 1 至 8 位乘客。"
+        passengersRequired: "请选择 1 至 20 位乘客。"
       }
     },
     hero: {

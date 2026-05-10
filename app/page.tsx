@@ -100,6 +100,9 @@ const routePrices: RoutePrice[] = [
   { from: "Dalaman Airport", to: "Kas", duration: "120 min", price: 90, currency: "GBP" }
 ];
 
+const MAX_PASSENGERS = 20;
+const CUSTOM_GROUP_PRICE_MESSAGE = "Please contact us on WhatsApp for groups larger than 16 passengers.";
+
 const experienceCardIcons: IconType[] = [Car, BadgeCheck, Clock3, CircleDollarSign, Route, CalendarCheck];
 
 const otherServiceCards: Array<{ key: "minibusTour" | "boatRental"; image: string; icon: IconType }> = [
@@ -206,7 +209,7 @@ function getHotelWhatsappUrl({
     tripType === "round-trip" ? `Return Date: ${formatDisplayDate(returnDate)}` : "",
     tripType === "round-trip" ? `Return Time: ${returnTime}` : "",
     selectedTier ? `Vehicle: ${selectedTier.vehicle}` : "",
-    selectedTier ? `Price: ${formatHotelTierPrice(selectedTier)}` : "Price: Please contact us on WhatsApp for larger groups."
+    selectedTier ? `Price: ${formatHotelTierPrice(selectedTier)}` : `Price: ${CUSTOM_GROUP_PRICE_MESSAGE}`
   ].filter(Boolean);
 
   return createWhatsAppLink(lines.join("\n"));
@@ -766,8 +769,8 @@ function PassengerSelector({
         <button
           type="button"
           aria-label={t.booking.increasePassengers}
-          disabled={passengers >= 8}
-          onClick={() => onChange(Math.min(8, passengers + 1))}
+          disabled={passengers >= MAX_PASSENGERS}
+          onClick={() => onChange(Math.min(MAX_PASSENGERS, passengers + 1))}
         >
           <Plus size={15} aria-hidden="true" />
         </button>
@@ -900,7 +903,7 @@ function SelectedHotelResultCard({
         <span>Passengers</span>
         <strong>{passengers}</strong>
         <span>Selected tier</span>
-        <strong>{selectedTier ? `${selectedTier.vehicle}: ${formatHotelTierPrice(selectedTier)}` : "Please contact us on WhatsApp for larger groups."}</strong>
+        <strong>{selectedTier ? `${selectedTier.vehicle}: ${formatHotelTierPrice(selectedTier)}` : CUSTOM_GROUP_PRICE_MESSAGE}</strong>
       </div>
 
       <div className="hotel-price-tier-list" aria-label="Hotel transfer prices">
@@ -914,13 +917,7 @@ function SelectedHotelResultCard({
         ))}
       </div>
 
-      {!selectedTier && <p className="hotel-large-group-note">Please contact us on WhatsApp for larger groups.</p>}
-
-      <div className="result-actions">
-        <a className="hotel-route-detail-link" href={`/routes/${route.slug}`}>
-          View route details
-        </a>
-      </div>
+      {!selectedTier && <p className="hotel-large-group-note">{CUSTOM_GROUP_PRICE_MESSAGE}</p>}
     </div>
   );
 }
@@ -1032,7 +1029,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
       }
     }
 
-    if (!Number.isFinite(passengers) || passengers < 1 || passengers > 8) {
+    if (!Number.isFinite(passengers) || passengers < 1 || passengers > MAX_PASSENGERS) {
       nextErrors.passengers = t.booking.errors.passengersRequired;
     }
 

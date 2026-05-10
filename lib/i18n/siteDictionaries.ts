@@ -1,5 +1,168 @@
+const homePageAdditions = {
+  en: {
+    priceFinderIntro: {
+      eyebrow: "Fixed Price VIP Transfer",
+      title: "Find Your Dalaman Airport Transfer Price",
+      subtitle:
+        "Private Mercedes VIP transfers from Dalaman Airport to Fethiye, Oludeniz, Gocek, Marmaris and nearby hotel regions."
+    },
+    otherServices: {
+      title: "Other Services",
+      subtitle: "Private transfer solutions for every part of your journey.",
+      cta: "Ask on WhatsApp",
+      items: {
+        airportTransfers: {
+          title: "Airport Transfers",
+          description:
+            "Private transfers from Dalaman Airport to Fethiye, Oludeniz, Gocek, Marmaris and nearby hotel regions."
+        },
+        hotelTransfers: {
+          title: "Hotel Transfers",
+          description: "Direct hotel pick-up and drop-off with fixed prices and comfortable Mercedes vehicles."
+        },
+        vipTransfers: {
+          title: "Private VIP Transfers",
+          description: "A premium door-to-door journey with Mercedes Vito and Sprinter options."
+        },
+        groupTransfers: {
+          title: "Group Transfers",
+          description: "Comfortable Sprinter transfer options for families and larger groups."
+        },
+        intercityTransfers: {
+          title: "Intercity Transfers",
+          description: "Private transfer solutions between popular destinations in Mugla and beyond."
+        },
+        customRoutes: {
+          title: "Custom Routes",
+          description: "Tell us your route and passenger count. We will confirm availability and price via WhatsApp."
+        }
+      }
+    }
+  },
+  tr: {
+    priceFinderIntro: {
+      eyebrow: "Sabit Fiyatlı VIP Transfer",
+      title: "Dalaman Havalimanı Transfer Fiyatını Bulun",
+      subtitle:
+        "Dalaman Havalimanı'ndan Fethiye, Ölüdeniz, Göcek, Marmaris ve yakın otel bölgelerine Mercedes VIP transfer fiyatlarını saniyeler içinde kontrol edin."
+    },
+    otherServices: {
+      title: "Diğer Hizmetler",
+      subtitle: "Yolculuğunuzun her aşaması için özel transfer çözümleri.",
+      cta: "WhatsApp'tan Sor",
+      items: {
+        airportTransfers: {
+          title: "Havalimanı Transferleri",
+          description:
+            "Dalaman Havalimanı'ndan Fethiye, Ölüdeniz, Göcek, Marmaris ve yakın otel bölgelerine özel transfer."
+        },
+        hotelTransfers: {
+          title: "Otel Transferleri",
+          description: "Sabit fiyatlı, konforlu Mercedes araçlarla direkt otel alış ve bırakış."
+        },
+        vipTransfers: {
+          title: "Özel VIP Transferler",
+          description: "Mercedes Vito ve Sprinter seçenekleriyle premium kapıdan kapıya yolculuk."
+        },
+        groupTransfers: {
+          title: "Grup Transferleri",
+          description: "Aileler ve kalabalık gruplar için konforlu Sprinter transfer seçenekleri."
+        },
+        intercityTransfers: {
+          title: "Şehirler Arası Transferler",
+          description: "Muğla ve çevresindeki popüler destinasyonlar arasında özel transfer çözümleri."
+        },
+        customRoutes: {
+          title: "Özel Rotalar",
+          description: "Rotanızı ve yolcu sayınızı iletin; uygunluk ve fiyatı WhatsApp üzerinden onaylayalım."
+        }
+      }
+    }
+  },
+  ru: {
+    priceFinderIntro: {
+      eyebrow: "VIP-трансфер с фиксированной ценой",
+      title: "Узнайте цену трансфера из аэропорта Даламан",
+      subtitle:
+        "Проверьте фиксированные цены Mercedes VIP из аэропорта Даламан до Фетхие, Олюдениза, Гёджека, Мармариса и ближайших отельных зон."
+    },
+    otherServices: {
+      title: "Другие услуги",
+      subtitle: "Частные трансферные решения для каждого этапа вашей поездки.",
+      cta: "Спросить в WhatsApp",
+      items: {
+        airportTransfers: {
+          title: "Трансферы из аэропорта",
+          description:
+            "Частные трансферы из аэропорта Даламан до Фетхие, Олюдениза, Гёджека, Мармариса и ближайших отельных зон."
+        },
+        hotelTransfers: {
+          title: "Трансферы до отеля",
+          description: "Прямой трансфер из/до отеля с фиксированными ценами и комфортными автомобилями Mercedes."
+        },
+        vipTransfers: {
+          title: "Частные VIP-трансферы",
+          description: "Премиальная поездка от двери до двери на Mercedes Vito или Sprinter."
+        },
+        groupTransfers: {
+          title: "Групповые трансферы",
+          description: "Комфортные варианты Sprinter для семей и больших групп."
+        },
+        intercityTransfers: {
+          title: "Междугородние трансферы",
+          description: "Частные трансферы между популярными направлениями в Мугле и за ее пределами."
+        },
+        customRoutes: {
+          title: "Индивидуальные маршруты",
+          description: "Сообщите маршрут и число пассажиров. Мы подтвердим наличие и цену в WhatsApp."
+        }
+      }
+    }
+  },
+  zh: {
+    priceFinderIntro: {
+      eyebrow: "固定价格 VIP 接送",
+      title: "查询达拉曼机场接送价格",
+      subtitle: "快速查看从达拉曼机场前往费特希耶、厄吕代尼兹、格杰克、马尔马里斯及周边酒店区域的 Mercedes VIP 固定接送价格。"
+    },
+    otherServices: {
+      title: "其他服务",
+      subtitle: "为旅程每一段提供私人接送方案。",
+      cta: "通过 WhatsApp 咨询",
+      items: {
+        airportTransfers: {
+          title: "机场接送",
+          description: "从达拉曼机场前往费特希耶、厄吕代尼兹、格杰克、马尔马里斯及周边酒店区域的私人接送。"
+        },
+        hotelTransfers: {
+          title: "酒店接送",
+          description: "固定价格、舒适 Mercedes 车辆，提供酒店直接接送。"
+        },
+        vipTransfers: {
+          title: "私人 VIP 接送",
+          description: "Mercedes Vito 与 Sprinter 可选，提供高端门到门出行体验。"
+        },
+        groupTransfers: {
+          title: "团队接送",
+          description: "适合家庭和较大团队的舒适 Sprinter 接送方案。"
+        },
+        intercityTransfers: {
+          title: "城际接送",
+          description: "连接穆拉及周边热门目的地的私人接送方案。"
+        },
+        customRoutes: {
+          title: "定制路线",
+          description: "告诉我们路线和乘客人数，我们将通过 WhatsApp 确认可用性和价格。"
+        }
+      }
+    }
+  }
+} as const;
+
 export const siteDictionaries = {
   en: {
+    homePriceFinderIntro: homePageAdditions.en.priceFinderIntro,
+    homeOtherServices: homePageAdditions.en.otherServices,
     common: {
       from: "from",
       route: "Route",
@@ -38,6 +201,44 @@ export const siteDictionaries = {
         eyebrow: "Popular Routes",
         title: "Popular Routes from Dalaman Airport",
         text: "The most requested fixed-price VIP routes for hotels, beaches, marinas and resort areas."
+      },
+      priceFinderIntro: {
+        eyebrow: "Fixed Price VIP Transfer",
+        title: "Find Your Dalaman Airport Transfer Price",
+        subtitle:
+          "Private Mercedes VIP transfers from Dalaman Airport to Fethiye, Oludeniz, Gocek, Marmaris and nearby hotel regions."
+      },
+      otherServices: {
+        title: "Other Services",
+        subtitle: "Private transfer solutions for every part of your journey.",
+        cta: "Ask on WhatsApp",
+        items: {
+          airportTransfers: {
+            title: "Airport Transfers",
+            description:
+              "Private transfers from Dalaman Airport to Fethiye, Oludeniz, Gocek, Marmaris and nearby hotel regions."
+          },
+          hotelTransfers: {
+            title: "Hotel Transfers",
+            description: "Direct hotel pick-up and drop-off with fixed prices and comfortable Mercedes vehicles."
+          },
+          vipTransfers: {
+            title: "Private VIP Transfers",
+            description: "A premium door-to-door journey with Mercedes Vito and Sprinter options."
+          },
+          groupTransfers: {
+            title: "Group Transfers",
+            description: "Comfortable Sprinter transfer options for families and larger groups."
+          },
+          intercityTransfers: {
+            title: "Intercity Transfers",
+            description: "Private transfer solutions between popular destinations in Mugla and beyond."
+          },
+          customRoutes: {
+            title: "Custom Routes",
+            description: "Tell us your route and passenger count. We will confirm availability and price via WhatsApp."
+          }
+        }
       }
     },
     priceFinder: {
@@ -267,6 +468,8 @@ export const siteDictionaries = {
     }
   },
   tr: {
+    homePriceFinderIntro: homePageAdditions.tr.priceFinderIntro,
+    homeOtherServices: homePageAdditions.tr.otherServices,
     common: {
       from: "itibaren",
       route: "Rota",
@@ -503,6 +706,8 @@ export const siteDictionaries = {
     }
   },
   ru: {
+    homePriceFinderIntro: homePageAdditions.ru.priceFinderIntro,
+    homeOtherServices: homePageAdditions.ru.otherServices,
     common: {
       from: "от",
       route: "Маршрут",
@@ -739,6 +944,8 @@ export const siteDictionaries = {
     }
   },
   zh: {
+    homePriceFinderIntro: homePageAdditions.zh.priceFinderIntro,
+    homeOtherServices: homePageAdditions.zh.otherServices,
     common: {
       from: "起",
       route: "路线",

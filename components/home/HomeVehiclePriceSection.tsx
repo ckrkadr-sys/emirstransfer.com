@@ -15,7 +15,7 @@ export function HomeVehiclePriceSection() {
   const routeNames = dictionary.site.routeNames as Record<string, string>;
 
   return (
-    <section className="home-vehicle-price-section">
+    <section className="home-vehicle-price-section" id="vehicles">
       <div className="container home-vehicle-price-grid">
         <div>
           <div className="home-section-title home-section-title-compact">

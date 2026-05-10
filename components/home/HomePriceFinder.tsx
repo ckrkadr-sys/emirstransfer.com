@@ -39,6 +39,7 @@ function getInitialQuery(route: TransferRoute) {
 export function HomePriceFinder({ selectedRouteId }: HomePriceFinderProps) {
   const { dictionary } = useI18n();
   const copy = dictionary.site.priceFinder;
+  const intro = dictionary.site.homePriceFinderIntro;
   const routeNames = dictionary.site.routeNames as Record<string, string>;
   const defaultRoute = useMemo(() => getDefaultRoute(selectedRouteId), [selectedRouteId]);
   const [query, setQuery] = useState(() => getInitialQuery(defaultRoute));
@@ -84,9 +85,14 @@ export function HomePriceFinder({ selectedRouteId }: HomePriceFinderProps) {
   return (
     <section className="home-finder-section" id="price-finder" aria-labelledby="home-price-finder-title">
       <div className="container">
+        <div className="home-finder-intro">
+          <span>{intro.eyebrow}</span>
+          <h1 id="home-price-finder-title">{intro.title}</h1>
+          <p>{intro.subtitle}</p>
+        </div>
         <div className="home-price-finder">
           <div className="home-finder-form">
-            <h2 id="home-price-finder-title">{copy.title}</h2>
+            <h2>{copy.title}</h2>
 
             <div className="home-finder-grid">
               <label className="home-field">
@@ -160,7 +166,7 @@ export function HomePriceFinder({ selectedRouteId }: HomePriceFinderProps) {
               <>
                 <h3>
                   {activeRoute.origin}
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">{"\u2192"}</span>
                   {destinationLabel}
                 </h3>
                 <dl>

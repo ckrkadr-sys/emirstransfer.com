@@ -23,7 +23,7 @@ export function HomePopularRoutes({ onSelectRoute }: HomePopularRoutesProps) {
   const routeNames = dictionary.site.routeNames as Record<string, string>;
 
   return (
-    <section className="home-routes-section">
+    <section className="home-routes-section" id="popular-routes">
       <div className="container">
         <div className="home-section-title">
           <span aria-hidden="true" />

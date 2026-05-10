@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HomePageContent } from "./HomePageContent";
 
 export const metadata: Metadata = {
-  title: "Emirs Transfer | Dalaman Airport VIP Transfer",
+  title: "Emirs Transfer | Dalaman Airport VIP Transfer Prices",
   description:
-    "Private VIP transfers from Dalaman Airport to Fethiye, Oludeniz, Gocek, Faralya, Kabak, Marmaris and nearby hotels with fixed prices and Mercedes vehicles."
+    "Check fixed private transfer prices from Dalaman Airport to Fethiye, Oludeniz, Gocek, Marmaris and nearby hotels. Book Mercedes VIP transfer via WhatsApp."
 };
 
 export default function HomePage() {

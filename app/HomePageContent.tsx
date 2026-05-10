@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HomeBottomCta } from "../components/home/HomeBottomCta";
-import { HomeHeroSection } from "../components/home/HomeHeroSection";
+import { HomeOtherServices } from "../components/home/HomeOtherServices";
 import { HomePopularRoutes } from "../components/home/HomePopularRoutes";
 import { HomePriceFinder } from "../components/home/HomePriceFinder";
 import { HomeVehiclePriceSection } from "../components/home/HomeVehiclePriceSection";
@@ -12,10 +12,10 @@ export function HomePageContent() {
 
   return (
     <main className="home-page">
-      <HomeHeroSection />
       <HomePriceFinder selectedRouteId={selectedRouteId} />
       <HomePopularRoutes onSelectRoute={setSelectedRouteId} />
       <HomeVehiclePriceSection />
+      <HomeOtherServices />
       <HomeBottomCta />
     </main>
   );

@@ -1,0 +1,18 @@
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Expected ',', got 'type'
+    ,-[[36;1;4mC:\Users\KadrC\OneDrive\Desktop\EMİRSTRANSFER\emirstransfer.com\app\page.tsx[0m:41:1]
+ [2m38[0m |   searchHotelTransferRoutes,
+ [2m39[0m |   type HotelTransferRoute,
+ [2m40[0m |   type HotelTransferRouteMatch
+ [2m41[0m |   type PriceTier
+    : [35;1m  ^^^^[0m
+ [2m42[0m | } from "../lib/hotelTransferRoutes";
+ [2m43[0m | import { type PageDictionary } from "../lib/i18n/dictionaries";
+ [2m44[0m | import { useI18n } from "../lib/i18n/useI18n";
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx

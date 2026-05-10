@@ -1,0 +1,39 @@
+
+> emirstransfer-com@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.15
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.104:3000
+
+ ✓ Starting...
+ ✓ Ready in 6.4s
+ ○ Compiling /routes/[slug] ...
+ ✓ Compiled /routes/[slug] in 6.7s (687 modules)
+ GET / 200 in 8691ms
+ GET /routes/dalaman-airport-to-calis-hotels 200 in 10182ms
+ ○ Compiling /book ...
+ ✓ Compiled /book in 2s (699 modules)
+ GET /book?from=Dalaman+Airport&to=Calis&date=2026-05-12&departure=2026-05-12&time=14%3A30&passengers=2&tripType=one-way&locale=en&currency=GBP&price=40&totalPrice=40&reservationFee=4&remainingBalance=36 200 in 2916ms
+ GET / 200 in 612ms
+ GET /routes/dalaman-airport-to-calis-hotels 200 in 701ms
+ ✓ Compiled in 1791ms (691 modules)
+ GET /routes/dalaman-airport-to-calis-hotels 200 in 958ms
+ ✓ Compiled in 1859ms (691 modules)
+ ✓ Compiled in 1628ms (691 modules)
+ ✓ Compiled in 1666ms (691 modules)
+ ✓ Compiled in 1523ms (691 modules)
+ ✓ Compiled in 1271ms (691 modules)
+ ✓ Compiled in 1077ms (691 modules)
+ ✓ Compiled in 1655ms (691 modules)
+ ✓ Compiled in 1788ms (691 modules)
+ GET / 200 in 2986ms
+ ✓ Compiled in 1516ms (691 modules)
+ ✓ Compiled in 1378ms (691 modules)
+ ✓ Compiled in 1317ms (691 modules)
+ ✓ Compiled in 3.5s (705 modules)
+ GET / 200 in 555ms
+ ✓ Compiled in 1607ms (691 modules)
+ ✓ Compiled in 1214ms (705 modules)
+ GET / 200 in 507ms
+[?25h

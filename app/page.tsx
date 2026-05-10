@@ -31,6 +31,15 @@ import {
   X
 } from "lucide-react";
 import { languageOptions, type Locale } from "../lib/i18n/config";
+import {
+  findHotelTransferRouteMatch,
+  hotelTransferRoutes,
+  normalizeHotelSearchValue,
+  searchHotelTransferRoutes,
+  type HotelTransferRoute,
+  type HotelTransferRouteMatch,
+  type PriceTier
+} from "../lib/hotelTransferRoutes";
 import { type PageDictionary } from "../lib/i18n/dictionaries";
 import { useI18n } from "../lib/i18n/useI18n";
 import { createWhatsAppLink } from "../lib/whatsapp";
@@ -143,6 +152,64 @@ function formatPrice(amount: number, currency: RoutePrice["currency"] = "GBP") {
   }
 
   return `${currency} ${amount}`;
+}
+
+function formatHotelTierPrice(price: PriceTier) {
+  return `£${price.gbp} / €${price.eur} / $${price.usd}`;
+}
+
+function getHotelPriceTier(prices: PriceTier[], passengers: number) {
+  if (passengers <= 5) {
+    return prices[0];
+  }
+
+  if (passengers <= 12) {
+    return prices[1];
+  }
+
+  if (passengers <= 16) {
+    return prices[2];
+  }
+
+  return null;
+}
+
+function getHotelWhatsappUrl({
+  hotelName,
+  route,
+  passengers,
+  departureDate,
+  departureTime,
+  returnDate,
+  returnTime,
+  tripType
+}: {
+  hotelName: string;
+  route: HotelTransferRoute;
+  passengers: number;
+  departureDate: string;
+  departureTime: string;
+  returnDate: string;
+  returnTime: string;
+  tripType: TripType;
+}) {
+  const selectedTier = getHotelPriceTier(route.prices, passengers);
+  const routeLabel = `${route.origin} → ${route.destination}`;
+  const lines = [
+    "Hello, I would like to book a transfer.",
+    `Route: ${routeLabel}`,
+    `Hotel: ${hotelName}`,
+    `Region: ${route.regionName}`,
+    `Passengers: ${passengers}`,
+    `Date: ${formatDisplayDate(departureDate)}`,
+    `Time: ${departureTime}`,
+    tripType === "round-trip" ? `Return Date: ${formatDisplayDate(returnDate)}` : "",
+    tripType === "round-trip" ? `Return Time: ${returnTime}` : "",
+    selectedTier ? `Vehicle: ${selectedTier.vehicle}` : "",
+    selectedTier ? `Price: ${formatHotelTierPrice(selectedTier)}` : "Price: Please contact us on WhatsApp for larger groups."
+  ].filter(Boolean);
+
+  return createWhatsAppLink(lines.join("\n"));
 }
 
 function getBookingUrl(result: RouteSearchResult, locale: Locale) {
@@ -412,7 +479,10 @@ function LocationSelect({
   icon: Icon,
   error,
   className,
-  t
+  t,
+  searchable = false,
+  hotelMatches = [],
+  onHotelMatchSelect
 }: {
   label: string;
   value: string;
@@ -421,11 +491,32 @@ function LocationSelect({
   error?: string;
   className?: string;
   t: PageDictionary;
+  searchable?: boolean;
+  hotelMatches?: HotelTransferRouteMatch[];
+  onHotelMatchSelect?: (match: HotelTransferRouteMatch) => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const labelId = useId();
   const errorId = useId();
+  const listboxId = useId();
+  const filteredDestinations = useMemo(() => {
+    if (!searchable) {
+      return destinations;
+    }
+
+    const normalizedValue = normalizeHotelSearchValue(value);
+
+    if (!normalizedValue) {
+      return destinations;
+    }
+
+    return destinations.filter((destination) => {
+      const destinationSearchText = normalizeHotelSearchValue(`${destination} ${getDestinationLabel(t, destination)}`);
+      return destinationSearchText.includes(normalizedValue);
+    });
+  }, [searchable, t, value]);
+  const shouldShowMenu = isOpen && (filteredDestinations.length > 0 || hotelMatches.length > 0);
 
   useEffect(() => {
     if (!isOpen) {
@@ -456,28 +547,83 @@ function LocationSelect({
   return (
     <div className={`field field-location location-select ${className ?? ""}`} ref={wrapperRef}>
       <span id={labelId}>{label}</span>
-      <button
-        type="button"
-        className={`field-control location-trigger ${error ? "field-control-error" : ""}`}
-        aria-labelledby={labelId}
-        aria-describedby={error ? errorId : undefined}
-        aria-haspopup="listbox"
-        aria-expanded={isOpen}
-        onClick={() => setIsOpen((open) => !open)}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowDown") {
-            event.preventDefault();
-            setIsOpen(true);
-          }
-        }}
-      >
-        <Icon size={18} aria-hidden="true" />
-        <span className="selected-location">{getDestinationLabel(t, value)}</span>
-        <ChevronDown size={16} aria-hidden="true" />
-      </button>
-      {isOpen && (
-        <div className="location-menu" role="listbox" aria-labelledby={labelId}>
-          {destinations.map((destination) => (
+      {searchable ? (
+        <div className={`field-control location-input-shell ${error ? "field-control-error" : ""}`}>
+          <Icon size={18} aria-hidden="true" />
+          <input
+            className="location-search-input"
+            value={value}
+            aria-labelledby={labelId}
+            aria-describedby={error ? errorId : undefined}
+            aria-autocomplete="list"
+            aria-controls={shouldShowMenu ? listboxId : undefined}
+            aria-expanded={isOpen}
+            role="combobox"
+            onChange={(event) => {
+              onChange(event.target.value);
+              setIsOpen(true);
+            }}
+            onFocus={() => setIsOpen(true)}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowDown") {
+                event.preventDefault();
+                setIsOpen(true);
+              }
+            }}
+          />
+          <button
+            type="button"
+            className="location-input-toggle"
+            aria-label={label}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((open) => !open)}
+          >
+            <ChevronDown size={16} aria-hidden="true" />
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          className={`field-control location-trigger ${error ? "field-control-error" : ""}`}
+          aria-labelledby={labelId}
+          aria-describedby={error ? errorId : undefined}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((open) => !open)}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowDown") {
+              event.preventDefault();
+              setIsOpen(true);
+            }
+          }}
+        >
+          <Icon size={18} aria-hidden="true" />
+          <span className="selected-location">{getDestinationLabel(t, value)}</span>
+          <ChevronDown size={16} aria-hidden="true" />
+        </button>
+      )}
+      {shouldShowMenu && (
+        <div className="location-menu" id={listboxId} role="listbox" aria-labelledby={labelId}>
+          {hotelMatches.map((match) => (
+            <button
+              type="button"
+              role="option"
+              aria-selected="false"
+              className="location-option location-option-hotel"
+              key={`${match.route.id}-${match.hotelName ?? match.route.slug}`}
+              onClick={() => {
+                onHotelMatchSelect?.(match);
+                setIsOpen(false);
+              }}
+            >
+              <span className="hotel-match-badge">{match.matchType === "hotel" ? "Hotel match" : "Route match"}</span>
+              <span className="hotel-match-title">{match.hotelName ?? match.route.destination}</span>
+              <span className="hotel-match-route">{match.route.title}</span>
+              <strong>From £{match.route.prices[0]?.gbp}</strong>
+            </button>
+          ))}
+
+          {filteredDestinations.map((destination) => (
             <button
               type="button"
               role="option"
@@ -717,6 +863,68 @@ function RouteResultCard({ result, t, locale }: { result: RouteSearchResult; t: 
   );
 }
 
+function SelectedHotelResultCard({
+  hotelName,
+  route,
+  regionName,
+  prices,
+  passengers
+}: {
+  hotelName: string;
+  route: HotelTransferRoute;
+  regionName: string;
+  prices: PriceTier[];
+  passengers: number;
+}) {
+  const selectedTier = getHotelPriceTier(prices, passengers);
+
+  return (
+    <div className="route-result-card hotel-selected-card" aria-live="polite">
+      <div className="result-card-head">
+        <div className="result-icon">
+          <CheckCircle2 size={22} aria-hidden="true" />
+        </div>
+        <div>
+          <h3>Selected hotel</h3>
+          <p>{hotelName}</p>
+        </div>
+      </div>
+
+      <div className="result-summary-grid">
+        <span>Route</span>
+        <strong>
+          {route.origin} → {route.destination}
+        </strong>
+        <span>Region</span>
+        <strong>{regionName}</strong>
+        <span>Passengers</span>
+        <strong>{passengers}</strong>
+        <span>Selected tier</span>
+        <strong>{selectedTier ? `${selectedTier.vehicle}: ${formatHotelTierPrice(selectedTier)}` : "Please contact us on WhatsApp for larger groups."}</strong>
+      </div>
+
+      <div className="hotel-price-tier-list" aria-label="Hotel transfer prices">
+        {prices.map((price) => (
+          <div className={selectedTier === price ? "selected" : ""} key={`${route.id}-${price.pax}`}>
+            <span>
+              {price.pax} {price.vehicle}
+            </span>
+            <strong>{formatHotelTierPrice(price)}</strong>
+          </div>
+        ))}
+      </div>
+
+      {!selectedTier && <p className="hotel-large-group-note">Please contact us on WhatsApp for larger groups.</p>}
+
+      <div className="result-actions">
+        <a className="hotel-route-detail-link" href={`/routes/${route.slug}`}>
+          View route details
+        </a>
+      </div>
+    </div>
+  );
+}
+
 function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
   const today = useMemo(() => getDateWithOffset(0), []);
   const [tripType, setTripType] = useState<TripType>("one-way");
@@ -729,19 +937,60 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
   const [passengers, setPassengers] = useState(2);
   const [errors, setErrors] = useState<BookingErrors>({});
   const [searchResult, setSearchResult] = useState<RouteSearchResult | null>(null);
+  const [selectedHotelName, setSelectedHotelName] = useState("");
+  const [selectedHotelRoute, setSelectedHotelRoute] = useState<HotelTransferRoute | null>(null);
+  const [selectedRegionName, setSelectedRegionName] = useState("");
+  const [selectedPrices, setSelectedPrices] = useState<PriceTier[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
   const selectedRoute = useMemo(() => findFixedRoute(from, to), [from, to]);
+  const hotelRouteMatches = useMemo(
+    () => (to.trim().length >= 2 ? searchHotelTransferRoutes(to, Math.min(6, hotelTransferRoutes.length)) : []),
+    [to]
+  );
+  const selectedHotelWhatsappUrl =
+    selectedHotelRoute && selectedHotelName
+      ? getHotelWhatsappUrl({
+          hotelName: selectedHotelName,
+          route: selectedHotelRoute,
+          passengers,
+          departureDate,
+          departureTime,
+          returnDate,
+          returnTime,
+          tripType
+        })
+      : "";
 
-  function resetFeedback() {
+  function clearSelectedHotelResult() {
+    setSelectedHotelName("");
+    setSelectedHotelRoute(null);
+    setSelectedRegionName("");
+    setSelectedPrices([]);
+  }
+
+  function resetFeedback({ clearHotel = false }: { clearHotel?: boolean } = {}) {
     setErrors({});
     setSearchResult(null);
+
+    if (clearHotel) {
+      clearSelectedHotelResult();
+    }
+  }
+
+  function selectHotelMatch(match: HotelTransferRouteMatch) {
+    setSelectedHotelName(match.hotelName ?? match.route.destination);
+    setSelectedHotelRoute(match.route);
+    setSelectedRegionName(match.route.regionName);
+    setSelectedPrices(match.route.prices);
+    setSearchResult(null);
+    setErrors({});
   }
 
   function swapLocations() {
     setFrom(to);
     setTo(from);
-    resetFeedback();
+    resetFeedback({ clearHotel: true });
   }
 
   function validate() {
@@ -804,6 +1053,12 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
     setIsSearching(true);
     await new Promise((resolve) => setTimeout(resolve, 300));
 
+    if (selectedHotelRoute && selectedHotelName) {
+      window.open(selectedHotelWhatsappUrl, "_blank", "noopener,noreferrer");
+      setIsSearching(false);
+      return;
+    }
+
     const route = findFixedRoute(from, to);
     const baseResult = {
       tripType,
@@ -817,6 +1072,15 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
     };
 
     if (!route) {
+      const hotelRouteMatch = hotelRouteMatches[0] ?? findHotelTransferRouteMatch(to);
+
+      if (hotelRouteMatch) {
+        setTo(hotelRouteMatch.hotelName ?? hotelRouteMatch.route.destination);
+        selectHotelMatch(hotelRouteMatch);
+        setIsSearching(false);
+        return;
+      }
+
       setSearchResult({ ...baseResult, status: "unavailable" });
       setIsSearching(false);
       return;
@@ -840,7 +1104,9 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
   }
 
   const bookingMessage =
-    selectedRoute && from !== to
+    selectedHotelRoute && selectedPrices[0]
+      ? `Selected hotel transfer: ${selectedHotelName} · ${selectedHotelRoute.origin} to ${selectedHotelRoute.destination} from £${selectedPrices[0].gbp}.`
+      : selectedRoute && from !== to
       ? t.booking.fixedPreview(
           selectedRoute.price,
           getDestinationLabel(t, selectedRoute.from),
@@ -857,7 +1123,7 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
           value={from}
           onChange={(value) => {
             setFrom(value);
-            resetFeedback();
+            resetFeedback({ clearHotel: true });
           }}
           icon={Plane}
           error={errors.from}
@@ -879,11 +1145,17 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
           value={to}
           onChange={(value) => {
             setTo(value);
-            resetFeedback();
+            resetFeedback({ clearHotel: true });
           }}
           icon={MapPin}
           error={errors.to}
           t={t}
+          searchable
+          hotelMatches={hotelRouteMatches}
+          onHotelMatchSelect={(match) => {
+            setTo(match.hotelName ?? match.route.destination);
+            selectHotelMatch(match);
+          }}
         />
 
         <div className="field trip-type-field">
@@ -963,10 +1235,12 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         <button className="button button-primary search-button" type="submit" disabled={isSearching}>
           {isSearching ? (
             <Clock3 className="spin" size={18} aria-hidden="true" />
+          ) : selectedHotelRoute ? (
+            <MessageCircle size={18} aria-hidden="true" />
           ) : (
             <Search size={18} aria-hidden="true" />
           )}
-          {isSearching ? t.booking.loading : t.booking.search}
+          {isSearching ? t.booking.loading : selectedHotelRoute ? "Book on WhatsApp" : t.booking.search}
         </button>
       </div>
 
@@ -974,6 +1248,16 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
         <CreditCard size={18} aria-hidden="true" />
         <span>{bookingMessage}</span>
       </div>
+
+      {selectedHotelRoute && selectedHotelName && (
+        <SelectedHotelResultCard
+          hotelName={selectedHotelName}
+          route={selectedHotelRoute}
+          regionName={selectedRegionName}
+          prices={selectedPrices}
+          passengers={passengers}
+        />
+      )}
 
       {searchResult && <RouteResultCard result={searchResult} t={t} locale={locale} />}
     </form>

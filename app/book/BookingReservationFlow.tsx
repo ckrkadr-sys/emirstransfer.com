@@ -1,12 +1,10 @@
 "use client";
 
-import Link from "next/link";
-import { FormEvent, ReactNode, useId, useState } from "react";
-import { ArrowLeft, CheckCircle2, CreditCard, Mail, Plane, UserRound } from "lucide-react";
-import { WhatsAppBrandIcon } from "../../components/WhatsAppBrandIcon";
-import { useI18n } from "../../lib/i18n/useI18n";
-import { type Locale } from "../../lib/i18n/config";
-import { type PageDictionary } from "../../lib/i18n/dictionaries";
+import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
+import { ArrowLeft, ArrowRight, CheckCircle2, CreditCard, Mail, MessageCircle, Plane, UserRound } from "lucide-react";
+import { fallbackLocale, type Locale } from "../../lib/i18n/config";
+import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
+import { type Currency } from "../../lib/pricing/pricing.types";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
 export type BookingPageData = {
@@ -18,7 +16,7 @@ export type BookingPageData = {
   returnTime: string;
   passengers: number;
   tripType: "one-way" | "round-trip";
-  currency: "GBP";
+  currency: Currency;
   totalPrice: number;
   reservationFee: number;
   remainingBalance: number;
@@ -50,6 +48,10 @@ const initialFormState: ReservationFormState = {
   pickupAddress: "",
   notes: ""
 };
+
+function getDictionary(locale: Locale): PageDictionary {
+  return (dictionaries[locale] ?? dictionaries[fallbackLocale]) as PageDictionary;
+}
 
 function getLocationLabel(t: PageDictionary, value: string) {
   return t.destinations[value as keyof PageDictionary["destinations"]] ?? value;
@@ -234,8 +236,8 @@ function BookingSummary({ booking, t }: { booking: BookingPageData; t: PageDicti
   );
 }
 
-export function BookingReservationFlow({ booking }: { booking: BookingPageData }) {
-  const { locale, dictionary: t } = useI18n();
+export function BookingReservationFlow({ locale, booking }: { locale: Locale; booking: BookingPageData }) {
+  const t = useMemo(() => getDictionary(locale), [locale]);
   const [form, setForm] = useState<ReservationFormState>(initialFormState);
   const [errors, setErrors] = useState<ReservationFormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -293,14 +295,6 @@ export function BookingReservationFlow({ booking }: { booking: BookingPageData }
       <section className="booking-page-hero">
         <div className="container booking-page-layout booking-page-layout-form">
           <div className="booking-details-panel">
-            <span className="eyebrow">{t.bookPage.eyebrow}</span>
-            <h1>{t.bookPage.title}</h1>
-            <p>{t.bookPage.description}</p>
-            <Link className="button button-secondary booking-back-link" href="/">
-              <ArrowLeft size={17} aria-hidden="true" />
-              {t.bookPage.backHome}
-            </Link>
-
             {isSubmitted ? (
               <section className="reservation-success-card" aria-live="polite">
                 <div className="success-icon">
@@ -311,12 +305,12 @@ export function BookingReservationFlow({ booking }: { booking: BookingPageData }
                 <p>{t.bookPage.success.text}</p>
                 <div className="reservation-actions">
                   <button className="button button-primary" type="button" onClick={() => openWhatsapp(lastMessage)}>
-                    <WhatsAppBrandIcon />
+                    <MessageCircle size={17} aria-hidden="true" />
                     {t.bookPage.success.sendAgain}
                   </button>
-                  <Link className="button button-dark" href="/">
+                  <a className="button button-outline-dark" href="/">
                     {t.bookPage.success.newReservation}
-                  </Link>
+                  </a>
                 </div>
               </section>
             ) : (
@@ -416,11 +410,19 @@ export function BookingReservationFlow({ booking }: { booking: BookingPageData }
                   </span>
                   <button className="button button-primary" type="submit" disabled={isSubmitting || !booking.isPriced}>
                     {isSubmitting ? t.bookPage.form.openingWhatsapp : t.bookPage.form.submit}
-                    <WhatsAppBrandIcon />
+                    <ArrowRight size={17} aria-hidden="true" />
                   </button>
                 </div>
               </form>
             )}
+
+            <span className="eyebrow">{t.bookPage.eyebrow}</span>
+            <h1>{t.bookPage.title}</h1>
+            <p>{t.bookPage.description}</p>
+            <a className="button button-secondary booking-back-link" href="/">
+              <ArrowLeft size={17} aria-hidden="true" />
+              {t.bookPage.backHome}
+            </a>
           </div>
 
           <div className="booking-side-panel">

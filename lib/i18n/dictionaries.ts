@@ -556,9 +556,9 @@ export const dictionaries = {
     },
     hero: {
       eyebrow: "Dalaman Havalimanı - Fethiye - Kalkan - Kaş",
-      title: "VIP Transfer Rezervasyonunuzu Hızlıca Oluşturun",
+      title: "Yolculuğunuzu Hemen Planlayın",
       mobileTitle: ["VIP Transfer", "Rezervasyonunuzu", "Hızlıca Oluşturun"],
-      text: "Fethiye, Ölüdeniz, Göcek, Kalkan ve Kaş için transferinizi kolayca planlayın.",
+      text: "Tatilinize konforlu, güvenli ve özel bir transferle başlayın.",
       primaryCta: "Transfer Rezervasyonu Yap",
       secondaryCta: "Sabit Fiyatları Gör",
       trust: ["Güvenli özel transfer", "Sabit rota fiyatları", "7/24 hizmet"]
@@ -731,7 +731,7 @@ export const dictionaries = {
         notesPlaceholder: "Bebek koltuğu, ekstra bagaj, varış detayı...",
         optional: "Opsiyonel",
         requiredNote: "Devam etmek için zorunlu alanları doldurun.",
-        submit: "Rezervasyonu WhatsApp ile Gönder",
+        submit: "Ödeme Adımına Geç",
         openingWhatsapp: "WhatsApp açılıyor"
       },
       success: {

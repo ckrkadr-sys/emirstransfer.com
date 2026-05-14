@@ -1,62 +1,75 @@
 "use client";
 
 import Link from "next/link";
+import { Mail, MapPin, MessageCircle, UserRound } from "lucide-react";
 import { useI18n } from "../lib/i18n/useI18n";
-import { serviceAreas } from "../lib/transferRoutes";
-import { buildWhatsAppUrl } from "../lib/transferPricing";
-import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
+import { createWhatsAppLink } from "../lib/whatsapp";
+
+function resolveHomeHash(href: string) {
+  if (href.startsWith("#")) {
+    return `/${href}`;
+  }
+
+  return href;
+}
 
 export function SiteFooter() {
-  const { dictionary, t } = useI18n();
-  const copy = dictionary.site.footer;
+  const { dictionary: t } = useI18n();
 
   return (
-    <footer className="site-footer">
+    <footer className="footer">
       <div className="container footer-grid">
-        <div className="footer-brand-column">
+        <div>
           <Link className="brand footer-brand" href="/">
-            <span className="brand-mark">{dictionary.brand.mark}</span>
-            <span className="brand-text">{dictionary.brand.name}</span>
+            <span className="brand-mark brand-mark-logo" aria-hidden="true">
+              <img src="/images/emirs-travel-brand-mark.png" alt="" />
+            </span>
+            <span>{t.brand.name}</span>
           </Link>
-          <p>{copy.description}</p>
-          <a className="button button-whatsapp footer-cta" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-            <WhatsAppBrandIcon />
-            {dictionary.site.common.bookViaWhatsApp}
+          <p>{t.footer.description}</p>
+        </div>
+        <div>
+          <h3>{t.footer.quickLinks}</h3>
+          {t.navItems.map((item) => (
+            <Link href={resolveHomeHash(item.href)} key={`footer-${item.href}`}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
+        <div>
+          <h3>{t.footer.services}</h3>
+          {t.footer.serviceLinks.map((serviceLink, index) => (
+            <Link href={index === t.footer.serviceLinks.length - 1 ? "/diger-hizmetler" : "/#booking"} key={serviceLink}>
+              {serviceLink}
+            </Link>
+          ))}
+        </div>
+        <div>
+          <h3>{t.footer.contact}</h3>
+          <a href={`tel:${t.brand.phoneHref}`}>
+            <UserRound size={16} aria-hidden="true" />
+            {t.brand.phone}
           </a>
-        </div>
-
-        <div>
-          <h2>{copy.quickLinks}</h2>
-          <div className="footer-links">
-            {dictionary.navItems.map((item) => (
-              <Link href={item.href} key={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2>{copy.serviceAreas}</h2>
-          <div className="service-area-list">
-            {serviceAreas.map((area) => (
-              <span key={area}>{area}</span>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2>{copy.bookingTitle}</h2>
-          <p className="footer-small">{copy.bookingText}</p>
-          <a className="footer-text-link" href={buildWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-            {copy.textLink}
+          <a href={createWhatsAppLink(t.common.whatsappInquiry)} target="_blank" rel="noopener noreferrer">
+            <MessageCircle size={16} aria-hidden="true" />
+            {t.common.whatsapp}
           </a>
+          <a href={`mailto:${t.brand.email}`}>
+            <Mail size={16} aria-hidden="true" />
+            {t.brand.email}
+          </a>
+          <span>
+            <MapPin size={16} aria-hidden="true" />
+            {t.footer.serviceArea}
+          </span>
         </div>
       </div>
-
       <div className="container footer-bottom">
-        <span>{t("site.footer.copyright", { year: new Date().getFullYear() })}</span>
-        <span>{copy.tagline}</span>
+        <span>{t.footer.copyright}</span>
+        <div>
+          <Link href="/#contact">{t.footer.privacy}</Link>
+          <Link href="/#contact">{t.footer.terms}</Link>
+        </div>
       </div>
     </footer>
   );

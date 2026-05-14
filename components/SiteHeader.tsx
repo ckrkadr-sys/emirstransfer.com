@@ -1,23 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { ChevronDown, Globe2, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { languageOptions, type Locale } from "../lib/i18n/config";
 import { useI18n } from "../lib/i18n/useI18n";
 import { createWhatsAppLink } from "../lib/whatsapp";
 import { WhatsAppBrandIcon } from "./WhatsAppBrandIcon";
-
-function isActive(pathname: string, href: string) {
-  const path = href.split("#")[0] || "/";
-
-  if (path === "/") {
-    return pathname === "/";
-  }
-
-  return pathname === path || pathname.startsWith(`${path}/`);
-}
 
 function resolveHomeHash(href: string) {
   if (href.startsWith("#")) {
@@ -28,13 +17,20 @@ function resolveHomeHash(href: string) {
 }
 
 export function SiteHeader() {
-  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
   const { locale, setLocale, dictionary: t } = useI18n();
   const selectedLanguage = languageOptions.find((language) => language.locale === locale) ?? languageOptions[0];
   const whatsappUrl = createWhatsAppLink(t.common.whatsappInquiry);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 32);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (!isLanguageOpen) {
@@ -68,77 +64,73 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="site-header">
-      <div className="container header-shell">
+    <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
+      <div className="container header-inner">
         <Link className="brand" href="/" aria-label={t.a11y.home} onClick={() => setIsOpen(false)}>
-          <span className="brand-mark">{t.brand.mark}</span>
-          <span className="brand-text">{t.brand.name}</span>
+          <img className="brand-logo" src="/images/emirs-transfer-logo.png" alt="EMIRSTRANSFER.COM logosu" />
         </Link>
 
-        <nav className="desktop-nav" aria-label={t.a11y.primaryNavigation}>
-          {t.navItems.map((item) => (
-            <Link
-              key={`${item.href}-${item.label}`}
-              className={isActive(pathname, item.href) ? "nav-link nav-link-active" : "nav-link"}
-              href={resolveHomeHash(item.href)}
-              aria-current={isActive(pathname, item.href) ? "page" : undefined}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="header-navigation-area">
+          <nav className="desktop-nav main-nav-group" aria-label={t.a11y.primaryNavigation}>
+            {t.navItems.map((item) => (
+              <Link key={`${item.href}-${item.label}`} className="nav-pill" href={resolveHomeHash(item.href)}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <div className="header-actions">
-          <div className="language" ref={languageRef}>
+          <div className="header-actions action-group">
+            <div className="language" ref={languageRef}>
+              <button
+                type="button"
+                className={`language-trigger ${isLanguageOpen ? "language-trigger-open" : ""}`}
+                aria-haspopup="listbox"
+                aria-expanded={isLanguageOpen}
+                aria-label={t.a11y.languageSelector}
+                onClick={() => setIsLanguageOpen((open) => !open)}
+              >
+                <Globe2 size={16} aria-hidden="true" />
+                <span>{selectedLanguage.code}</span>
+                <ChevronDown className="language-chevron" size={14} aria-hidden="true" />
+              </button>
+
+              {isLanguageOpen && (
+                <div className="language-menu" role="listbox" aria-label={t.common.selectLanguage}>
+                  {languageOptions.map((language) => (
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={locale === language.locale}
+                      className={`language-option ${locale === language.locale ? "selected" : ""}`}
+                      key={language.code}
+                      onClick={() => selectLanguage(language.locale)}
+                    >
+                      <span className="language-code">{language.code}</span>
+                      <span>{t.language[language.locale]}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <a className="whatsapp-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label={t.a11y.contactWhatsapp}>
+              <WhatsAppBrandIcon />
+            </a>
+
+            <Link className="button button-primary header-book" href="/#booking">
+              {t.common.bookNow}
+            </Link>
+
             <button
               type="button"
-              className={`language-trigger ${isLanguageOpen ? "language-trigger-open" : ""}`}
-              aria-haspopup="listbox"
-              aria-expanded={isLanguageOpen}
-              aria-label={t.a11y.languageSelector}
-              onClick={() => setIsLanguageOpen((open) => !open)}
+              className="mobile-menu-button"
+              aria-label={isOpen ? t.a11y.mobileNavigation : t.a11y.openMobileMenu}
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen((open) => !open)}
             >
-              <Globe2 size={16} aria-hidden="true" />
-              <span>{selectedLanguage.code}</span>
-              <ChevronDown className="language-chevron" size={14} aria-hidden="true" />
+              {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
-
-            {isLanguageOpen && (
-              <div className="language-menu" role="listbox" aria-label={t.common.selectLanguage}>
-                {languageOptions.map((language) => (
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={locale === language.locale}
-                    className={`language-option ${locale === language.locale ? "selected" : ""}`}
-                    key={language.code}
-                    onClick={() => selectLanguage(language.locale)}
-                  >
-                    <span className="language-code">{language.code}</span>
-                    <span>{t.language[language.locale]}</span>
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
-
-          <a className="whatsapp-link" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label={t.a11y.contactWhatsapp}>
-            <WhatsAppBrandIcon />
-          </a>
-
-          <Link className="button button-primary header-book" href="/#price-finder">
-            {t.common.bookNow}
-          </Link>
-
-          <button
-            type="button"
-            className="mobile-menu-button"
-            aria-label={isOpen ? t.a11y.mobileNavigation : t.a11y.openMobileMenu}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((open) => !open)}
-          >
-            {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
-          </button>
         </div>
       </div>
 
@@ -148,9 +140,7 @@ export function SiteHeader() {
             {t.navItems.map((item) => (
               <Link
                 key={`${item.href}-${item.label}`}
-                className={isActive(pathname, item.href) ? "mobile-nav-link mobile-nav-link-active" : "mobile-nav-link"}
                 href={resolveHomeHash(item.href)}
-                aria-current={isActive(pathname, item.href) ? "page" : undefined}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}
@@ -177,7 +167,7 @@ export function SiteHeader() {
 
           <div className="mobile-menu-ctas">
             <a
-              className="button button-whatsapp mobile-whatsapp"
+              className="button button-outline-dark"
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -186,7 +176,7 @@ export function SiteHeader() {
               <WhatsAppBrandIcon />
               {t.common.contactWhatsapp}
             </a>
-            <Link className="button button-primary" href="/#price-finder" onClick={() => setIsOpen(false)}>
+            <Link className="button button-primary" href="/#booking" onClick={() => setIsOpen(false)}>
               {t.common.bookNow}
             </Link>
           </div>

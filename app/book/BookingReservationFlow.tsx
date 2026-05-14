@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, ReactNode, useId, useMemo, useState } from "react";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, CreditCard, Mail, MessageCircle, Plane, UserRound } from "lucide-react";
 import { fallbackLocale, type Locale } from "../../lib/i18n/config";
 import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
@@ -308,9 +309,9 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
                     <MessageCircle size={17} aria-hidden="true" />
                     {t.bookPage.success.sendAgain}
                   </button>
-                  <a className="button button-outline-dark" href="/">
+                  <Link className="button button-outline-dark" href="/">
                     {t.bookPage.success.newReservation}
-                  </a>
+                  </Link>
                 </div>
               </section>
             ) : (
@@ -419,10 +420,10 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
             <span className="eyebrow">{t.bookPage.eyebrow}</span>
             <h1>{t.bookPage.title}</h1>
             <p>{t.bookPage.description}</p>
-            <a className="button button-secondary booking-back-link" href="/">
+            <Link className="button button-secondary booking-back-link" href="/">
               <ArrowLeft size={17} aria-hidden="true" />
               {t.bookPage.backHome}
-            </a>
+            </Link>
           </div>
 
           <div className="booking-side-panel">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Mail, MapPin, MessageCircle, UserRound } from "lucide-react";
 import { defaultLocale, fallbackLocale } from "../../lib/i18n/config";
 import { dictionaries, type PageDictionary } from "../../lib/i18n/dictionaries";
@@ -19,18 +20,18 @@ export function RoutesHeader() {
   return (
     <header className="services-page-header">
       <div className="container header-inner">
-        <a className="brand" href="/" aria-label={t.a11y.home}>
+        <Link className="brand" href="/" aria-label={t.a11y.home}>
           <span className="brand-mark brand-mark-logo" aria-hidden="true">
             <img src="/images/emirs-travel-brand-mark.png" alt="" />
           </span>
           <span>{t.brand.name}</span>
-        </a>
+        </Link>
 
         <nav className="desktop-nav main-nav-group" aria-label={t.a11y.primaryNavigation}>
           {t.navItems.map((item) => (
-            <a key={item.label} className="nav-pill" href={resolveNavHref(item.href)}>
+            <Link key={item.label} className="nav-pill" href={resolveNavHref(item.href)}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -44,9 +45,9 @@ export function RoutesHeader() {
           >
             <MessageCircle size={20} aria-hidden="true" />
           </a>
-          <a className="button button-primary header-book" href="/#booking">
+          <Link className="button button-primary header-book" href="/#booking">
             {t.common.bookNow}
-          </a>
+          </Link>
         </div>
       </div>
     </header>
@@ -60,28 +61,28 @@ export function RoutesFooter() {
     <footer className="footer services-page-footer">
       <div className="container footer-grid">
         <div>
-          <a className="brand footer-brand" href="/">
+          <Link className="brand footer-brand" href="/">
             <span className="brand-mark brand-mark-logo" aria-hidden="true">
               <img src="/images/emirs-travel-brand-mark.png" alt="" />
             </span>
             <span>{t.brand.name}</span>
-          </a>
+          </Link>
           <p>{t.footer.description}</p>
         </div>
         <div>
           <h3>{t.footer.quickLinks}</h3>
           {t.navItems.map((item) => (
-            <a href={resolveNavHref(item.href)} key={`routes-footer-${item.href}`}>
+            <Link href={resolveNavHref(item.href)} key={`routes-footer-${item.href}`}>
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
         <div>
           <h3>{t.footer.services}</h3>
           {t.footer.serviceLinks.map((serviceLink, index) => (
-            <a href={index === t.footer.serviceLinks.length - 1 ? "/diger-hizmetler" : "/#booking"} key={serviceLink}>
+            <Link href={index === t.footer.serviceLinks.length - 1 ? "/diger-hizmetler" : "/#booking"} key={serviceLink}>
               {serviceLink}
-            </a>
+            </Link>
           ))}
         </div>
         <div>
@@ -107,8 +108,8 @@ export function RoutesFooter() {
       <div className="container footer-bottom">
         <span>{t.footer.copyright}</span>
         <div>
-          <a href="/#contact">{t.footer.privacy}</a>
-          <a href="/#contact">{t.footer.terms}</a>
+          <Link href="/#contact">{t.footer.privacy}</Link>
+          <Link href="/#contact">{t.footer.terms}</Link>
         </div>
       </div>
     </footer>

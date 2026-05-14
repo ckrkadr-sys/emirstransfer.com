@@ -1122,11 +1122,10 @@ function BookingWidget({ t, locale }: { t: PageDictionary; locale: Locale }) {
 }
 
 export default function Home() {
-  const { locale, setLocale, dictionary: t } = useI18n();
+  const { locale, dictionary: t } = useI18n();
 
   return (
     <>
-      <Header selectedLocale={locale} onLocaleSelect={setLocale} t={t} />
       <main>
         <section className="hero" id="home">
           <div className="hero-bg" />
@@ -1225,62 +1224,6 @@ export default function Home() {
         </section>
 
       </main>
-
-      <footer className="footer">
-        <div className="container footer-grid">
-          <div>
-            <a className="brand footer-brand" href="#home">
-              <span className="brand-mark brand-mark-logo" aria-hidden="true">
-                <img src="/images/emirs-travel-brand-mark.png" alt="" />
-              </span>
-              <span>{t.brand.name}</span>
-            </a>
-            <p>{t.footer.description}</p>
-          </div>
-          <div>
-            <h3>{t.footer.quickLinks}</h3>
-            {t.navItems.map((item) => (
-              <a href={item.href} key={`footer-${item.href}`}>
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div>
-            <h3>{t.footer.services}</h3>
-            {t.footer.serviceLinks.map((serviceLink, index) => (
-              <a href={index === t.footer.serviceLinks.length - 1 ? "/diger-hizmetler" : "#booking"} key={serviceLink}>
-                {serviceLink}
-              </a>
-            ))}
-          </div>
-          <div>
-            <h3>{t.footer.contact}</h3>
-            <a href={`tel:${t.brand.phoneHref}`}>
-              <UserRound size={16} aria-hidden="true" />
-              {t.brand.phone}
-            </a>
-            <a href={createWhatsAppLink(t.common.whatsappInquiry)} target="_blank" rel="noopener noreferrer">
-              <MessageCircle size={16} aria-hidden="true" />
-              {t.common.whatsapp}
-            </a>
-            <a href={`mailto:${t.brand.email}`}>
-              <Mail size={16} aria-hidden="true" />
-              {t.brand.email}
-            </a>
-            <span>
-              <MapPin size={16} aria-hidden="true" />
-              {t.footer.serviceArea}
-            </span>
-          </div>
-        </div>
-        <div className="container footer-bottom">
-          <span>{t.footer.copyright}</span>
-          <div>
-            <a href="#contact">{t.footer.privacy}</a>
-            <a href="#contact">{t.footer.terms}</a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 }

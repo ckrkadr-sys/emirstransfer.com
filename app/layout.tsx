@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { MobileWhatsAppCta } from "../components/MobileWhatsAppCta";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
 import "./globals.css";
@@ -43,7 +42,6 @@ export default function RootLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
-        <MobileWhatsAppCta />
       </body>
     </html>
   );

@@ -1327,6 +1327,7 @@ img {
 
 .price-finder-panel {
   display: grid;
+  align-items: start;
   grid-template-columns: minmax(0, 1fr) minmax(330px, 0.5fr);
   gap: 22px;
   padding: 28px 30px 30px;
@@ -1334,6 +1335,7 @@ img {
 
 .finder-fields {
   display: grid;
+  align-content: start;
   min-width: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
@@ -1343,6 +1345,10 @@ img {
   display: grid;
   min-width: 0;
   gap: 8px;
+}
+
+.finder-field-search {
+  min-width: 0;
 }
 
 .finder-field > span {
@@ -3228,8 +3234,73 @@ img {
     padding: 64px 0;
   }
 
+  .section-finder {
+    background:
+      linear-gradient(
+        180deg,
+        var(--color-primary-dark) 0,
+        var(--color-primary-dark) 76px,
+        var(--surface-warm) 76px,
+        var(--surface-warm) 100%
+      );
+  }
+
   .page-hero {
-    padding-top: 88px;
+    padding-top: 68px;
+  }
+
+  .page-hero-inner {
+    padding: 48px 0 54px;
+  }
+
+  .page-hero h1 {
+    max-width: min(100%, 360px);
+    font-size: clamp(2rem, 8.4vw, 2.45rem);
+    line-height: 1.08;
+  }
+
+  .page-hero p {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.62;
+  }
+
+  .price-finder {
+    border-radius: 18px;
+  }
+
+  .price-finder-intro {
+    padding: 22px 18px 0;
+  }
+
+  .price-finder-panel {
+    gap: 18px;
+    padding: 20px 18px 18px;
+  }
+
+  .finder-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .segmented-control {
+    min-height: 54px;
+  }
+
+  .segmented-control button {
+    font-size: 12px;
+  }
+
+  .finder-result {
+    border-radius: 16px;
+    padding: 18px;
+  }
+
+  .result-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-price {
+    font-size: 24px !important;
   }
 
   .section-heading,
@@ -3245,6 +3316,11 @@ img {
   .steps-grid,
   .testimonial-grid {
     grid-template-columns: 1fr;
+  }
+
+  .route-card-footer {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .routes-index-hero {

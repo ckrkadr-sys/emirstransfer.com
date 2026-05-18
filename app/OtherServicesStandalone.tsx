@@ -1,7 +1,8 @@
+"use client";
+
 import { Map, Sailboat } from "lucide-react";
 import { services } from "../data/services";
-import { defaultLocale, type Locale } from "../lib/i18n/config";
-import { dictionaries, type PageDictionary } from "../lib/i18n/dictionaries";
+import { useI18n } from "../lib/i18n/useI18n";
 import { createWhatsAppLink } from "../lib/whatsapp";
 
 const serviceIconMap = {
@@ -9,12 +10,8 @@ const serviceIconMap = {
   sailboat: Sailboat
 };
 
-function getDictionary(locale: Locale): PageDictionary {
-  return dictionaries[locale] as PageDictionary;
-}
-
-export function OtherServicesStandalone({ locale = defaultLocale }: { locale?: Locale }) {
-  const t = getDictionary(locale);
+export function OtherServicesStandalone() {
+  const { dictionary: t } = useI18n();
 
   return (
     <main className="services-page">

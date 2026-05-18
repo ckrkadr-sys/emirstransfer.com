@@ -20,12 +20,6 @@ export function SiteFooter() {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <Link className="brand footer-brand" href="/">
-            <span className="brand-mark brand-mark-logo" aria-hidden="true">
-              <img src="/images/emirs-travel-brand-mark.png" alt="" />
-            </span>
-            <span>{t.brand.name}</span>
-          </Link>
           <p>{t.footer.description}</p>
         </div>
         <div>

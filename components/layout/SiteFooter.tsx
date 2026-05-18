@@ -1,5 +1,4 @@
 import { Mail, MapPin, MessageCircle, UserRound } from "lucide-react";
-import { Logo } from "../brand/Logo";
 import { type PageDictionary } from "../../lib/i18n/dictionaries";
 import { createWhatsAppLink } from "../../lib/whatsapp";
 
@@ -8,7 +7,6 @@ export function SiteFooter({ t }: { t: PageDictionary }) {
     <footer className="footer">
       <div className="container footer-grid">
         <div>
-          <Logo className="brand footer-brand" href="#home" variant="footer" brandName={t.brand.name} />
           <p>{t.footer.description}</p>
         </div>
         <div>

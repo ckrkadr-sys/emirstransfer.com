@@ -81,6 +81,7 @@ export const dictionaries = {
       { label: "Home", href: "/" },
       { label: "Routes & Prices", href: "/routes" },
       { label: "Fleet", href: "/fleet" },
+      { label: "Other Services", href: "/other-services" },
       { label: "About", href: "/about" },
       { label: "Contact", href: "/contact" }
     ],
@@ -456,6 +457,7 @@ export const dictionaries = {
       { label: "Ana Sayfa", href: "/" },
       { label: "Rotalar ve Fiyatlar", href: "/routes" },
       { label: "Araç Filosu", href: "/fleet" },
+      { label: "Diğer Hizmetlerimiz", href: "/diger-hizmetler" },
       { label: "Hakkımızda", href: "/about" },
       { label: "İletişim", href: "/contact" }
     ],
@@ -803,6 +805,7 @@ export const dictionaries = {
       { label: "Главная", href: "/" },
       { label: "Маршруты и цены", href: "/routes" },
       { label: "Автопарк", href: "/fleet" },
+      { label: "Другие услуги", href: "/other-services" },
       { label: "О нас", href: "/about" },
       { label: "Контакты", href: "/contact" }
     ],
@@ -1148,6 +1151,7 @@ export const dictionaries = {
       { label: "首页", href: "/" },
       { label: "路线与价格", href: "/routes" },
       { label: "车队", href: "/fleet" },
+      { label: "其他服务", href: "/other-services" },
       { label: "关于我们", href: "/about" },
       { label: "联系", href: "/contact" }
     ],

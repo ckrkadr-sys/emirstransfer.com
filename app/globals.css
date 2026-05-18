@@ -2556,7 +2556,7 @@ img {
 }
 
 .booking-details-panel > .eyebrow {
-  margin-top: 30px;
+  margin-top: 0;
 }
 
 .booking-page h1 {
@@ -2647,6 +2647,10 @@ img {
   font-weight: 750;
 }
 
+.booking-page .booking-summary-warning {
+  color: var(--brand-dark);
+}
+
 .booking-side-panel {
   position: sticky;
   top: 100px;
@@ -2673,6 +2677,10 @@ img {
   padding: 13px;
 }
 
+.booking-page .booking-payment-note {
+  color: #7a5a17;
+}
+
 .booking-contact-strip {
   border: 1px solid var(--color-dark-border);
   background: rgba(255, 255, 255, 0.12);
@@ -2689,11 +2697,6 @@ img {
   color: var(--brand-dark);
   padding: 24px;
   box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
-}
-
-.booking-details-panel > .reservation-form-card,
-.booking-details-panel > .reservation-success-card {
-  margin-top: 0;
 }
 
 .reservation-form-head {

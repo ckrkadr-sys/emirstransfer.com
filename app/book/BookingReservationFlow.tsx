@@ -296,6 +296,14 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
       <section className="booking-page-hero">
         <div className="container booking-page-layout booking-page-layout-form">
           <div className="booking-details-panel">
+            <span className="eyebrow">{t.bookPage.eyebrow}</span>
+            <h1>{t.bookPage.title}</h1>
+            <p>{t.bookPage.description}</p>
+            <Link className="button button-secondary booking-back-link" href="/">
+              <ArrowLeft size={17} aria-hidden="true" />
+              {t.bookPage.backHome}
+            </Link>
+
             {isSubmitted ? (
               <section className="reservation-success-card" aria-live="polite">
                 <div className="success-icon">
@@ -416,14 +424,6 @@ export function BookingReservationFlow({ locale, booking }: { locale: Locale; bo
                 </div>
               </form>
             )}
-
-            <span className="eyebrow">{t.bookPage.eyebrow}</span>
-            <h1>{t.bookPage.title}</h1>
-            <p>{t.bookPage.description}</p>
-            <Link className="button button-secondary booking-back-link" href="/">
-              <ArrowLeft size={17} aria-hidden="true" />
-              {t.bookPage.backHome}
-            </Link>
           </div>
 
           <div className="booking-side-panel">

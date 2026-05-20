@@ -53,6 +53,239 @@ const faqs = [
   }
 ];
 
+export const otherServicesExperience = {
+  en: {
+    minibusTour: {
+      heroImageAlt: "Private Mercedes-Benz Sprinter for Minibus City Tour in Fethiye",
+      experienceTitle: "Explore Fethiye with a Private City Tour",
+      experienceDescription:
+        "Discover Fethiye and its surroundings with a comfortable private vehicle, flexible route planning, hotel pickup and return service. Ideal for families, small groups and guests who want to explore the region without joining crowded tours.",
+      destinations: [
+        {
+          title: "Ölüdeniz & Blue Lagoon",
+          description:
+            "One of the most iconic coastal spots in Turkey, famous for its turquoise water, calm lagoon views and photo opportunities.",
+          badges: ["Nature", "Iconic Stop", "Photo Spot"],
+          duration: "8-9 Hours",
+          image: "/images/home/route-oludeniz.svg",
+          imageAlt: "Ölüdeniz Blue Lagoon private tour stop"
+        },
+        {
+          title: "Kayaköy",
+          description:
+            "A historical village with stone houses and a quiet atmosphere, perfect for guests who want to experience the cultural side of Fethiye.",
+          badges: ["History", "Culture"],
+          duration: "4 Hours",
+          image: "/images/home/route-fethiye.svg",
+          imageAlt: "Kayaköy historical village near Fethiye"
+        },
+        {
+          title: "Saklıkent Canyon",
+          description:
+            "A refreshing nature escape with impressive canyon views, walking routes and a cooler atmosphere during summer.",
+          badges: ["Nature", "Summer Escape"],
+          duration: "6 Hours",
+          image: "/images/home/route-faralya.svg",
+          imageAlt: "Saklıkent Canyon city tour stop"
+        },
+        {
+          title: "Amyntas Rock Tombs",
+          description:
+            "An important historical landmark in Fethiye, offering a short but memorable cultural stop.",
+          badges: ["History", "Landmark"],
+          duration: "3 Hours",
+          image: "/images/home/route-fethiye.svg",
+          imageAlt: "Amyntas Rock Tombs historical stop in Fethiye"
+        },
+        {
+          title: "Çalış Beach Sunset",
+          description:
+            "A relaxed seaside stop that works perfectly as the final moment of the tour, especially around sunset.",
+          badges: ["Sunset", "Relaxed Stop"],
+          duration: "3-4 Hours",
+          image: "/images/home/route-calis.svg",
+          imageAlt: "Çalış Beach sunset private tour stop"
+        }
+      ]
+    },
+    boatRental: {
+      heroImageAlt: "Private boat tour in a turquoise bay near Fethiye",
+      experienceTitle: "Private Boat Tours & Hidden Bays",
+      experienceDescription:
+        "Enjoy a private boat experience around Fethiye and Göcek with flexible route planning, swimming stops, scenic bays and a more personal atmosphere away from crowded tours.",
+      destinations: [
+        {
+          title: "Göcek 12 Islands",
+          description:
+            "A classic blue-cruise style route with calm bays, island views and several swimming stops.",
+          badges: ["Swimming Stop", "Scenic Route"],
+          duration: "8 Hours",
+          image: "/images/home/route-gocek.svg",
+          imageAlt: "Göcek 12 Islands private boat tour"
+        },
+        {
+          title: "Aquarium Bay",
+          description: "Known for its clear water and peaceful atmosphere, ideal for swimming and relaxing.",
+          badges: ["Swimming Stop", "Clear Water"],
+          duration: "6-7 Hours",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Aquarium Bay private boat tour swimming stop"
+        },
+        {
+          title: "Bedri Rahmi Bay",
+          description:
+            "A popular Göcek bay combining natural beauty with the spirit of traditional boat trips.",
+          badges: ["Nature", "Göcek"],
+          duration: "6-7 Hours",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Bedri Rahmi Bay Göcek private boat tour"
+        },
+        {
+          title: "Butterfly Valley",
+          description:
+            "A dramatic coastal destination surrounded by high cliffs, usually reached by boat from the Ölüdeniz area.",
+          badges: ["Nature", "Iconic Stop"],
+          duration: "7-8 Hours",
+          image: "/images/home/route-faralya.svg",
+          imageAlt: "Butterfly Valley private boat tour stop"
+        },
+        {
+          title: "Gemiler Island",
+          description:
+            "A scenic island route that can add a historical and sunset-focused touch to private boat tours.",
+          badges: ["History", "Sunset"],
+          duration: "7-8 Hours",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Gemiler Island private boat tour near Fethiye"
+        }
+      ]
+    },
+    privateTourCta: {
+      title: "Plan Your Private Tour with Emirs Transfer",
+      text:
+        "Tell us where you want to go, and we’ll help you create a comfortable route with hotel pickup, private transportation and flexible timing.",
+      button: "Plan via WhatsApp",
+      whatsappMessage:
+        "Hello, I would like to plan a private tour with Emirs Transfer. Please help me create a route with hotel pickup and flexible timing."
+    }
+  },
+  tr: {
+    minibusTour: {
+      heroImageAlt: "Fethiye Minibüsle Şehir Turu için özel Mercedes-Benz Sprinter",
+      experienceTitle: "Fethiye'yi Özel Şehir Turu ile Keşfedin",
+      experienceDescription:
+        "Konforlu özel araç, esnek rota planlaması, otelden alış ve dönüş hizmetiyle Fethiye ve çevresini keşfedin. Kalabalık turlara katılmadan bölgeyi görmek isteyen aileler, küçük gruplar ve misafirler için idealdir.",
+      destinations: [
+        {
+          title: "Ölüdeniz & Blue Lagoon",
+          description:
+            "Turkuaz denizi, sakin lagün manzarası ve fotoğraf noktalarıyla Türkiye'nin en ikonik kıyı duraklarından biri.",
+          badges: ["Doğa", "İkonik Durak", "Fotoğraf Noktası"],
+          duration: "8-9 Saat",
+          image: "/images/home/route-oludeniz.svg",
+          imageAlt: "Ölüdeniz Blue Lagoon private tour stop"
+        },
+        {
+          title: "Kayaköy",
+          description:
+            "Taş evleri ve sessiz atmosferiyle Fethiye'nin kültürel yüzünü deneyimlemek isteyen misafirler için özel bir tarihi köy.",
+          badges: ["Tarih", "Kültür"],
+          duration: "4 Saat",
+          image: "/images/home/route-fethiye.svg",
+          imageAlt: "Kayaköy historical village near Fethiye"
+        },
+        {
+          title: "Saklıkent Kanyonu",
+          description:
+            "Etkileyici kanyon manzaraları, yürüyüş rotaları ve yaz aylarında daha serin atmosferiyle ferahlatıcı bir doğa kaçamağı.",
+          badges: ["Doğa", "Yaz Kaçamağı"],
+          duration: "6 Saat",
+          image: "/images/home/route-faralya.svg",
+          imageAlt: "Saklıkent Canyon city tour stop"
+        },
+        {
+          title: "Amyntas Kaya Mezarları",
+          description:
+            "Fethiye'nin kısa ama akılda kalan kültürel duraklarından biri olan önemli bir tarihi simge.",
+          badges: ["Tarih", "Simge Nokta"],
+          duration: "3 Saat",
+          image: "/images/home/route-fethiye.svg",
+          imageAlt: "Amyntas Rock Tombs historical stop in Fethiye"
+        },
+        {
+          title: "Çalış Plajı Gün Batımı",
+          description:
+            "Özellikle gün batımı saatlerinde turun final anı için çok uygun, sakin ve keyifli bir sahil durağı.",
+          badges: ["Gün Batımı", "Sakin Durak"],
+          duration: "3-4 Saat",
+          image: "/images/home/route-calis.svg",
+          imageAlt: "Çalış Beach sunset private tour stop"
+        }
+      ]
+    },
+    boatRental: {
+      heroImageAlt: "Fethiye yakınlarında turkuaz koyda özel tekne turu",
+      experienceTitle: "Özel Tekne Turları ve Saklı Koylar",
+      experienceDescription:
+        "Fethiye ve Göcek çevresinde esnek rota planlaması, yüzme molaları, manzaralı koylar ve kalabalık turlardan uzak daha kişisel bir atmosferle özel tekne deneyimi yaşayın.",
+      destinations: [
+        {
+          title: "Göcek 12 Adalar",
+          description:
+            "Sakin koyları, ada manzaraları ve birkaç yüzme molasıyla klasik mavi yolculuk hissi veren özel bir rota.",
+          badges: ["Yüzme Molası", "Manzaralı Rota"],
+          duration: "8 Saat",
+          image: "/images/home/route-gocek.svg",
+          imageAlt: "Göcek 12 Islands private boat tour"
+        },
+        {
+          title: "Akvaryum Koyu",
+          description: "Berrak suyu ve huzurlu atmosferiyle yüzmek ve dinlenmek için ideal bir koy.",
+          badges: ["Yüzme Molası", "Berrak Su"],
+          duration: "6-7 Saat",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Aquarium Bay private boat tour swimming stop"
+        },
+        {
+          title: "Bedri Rahmi Koyu",
+          description:
+            "Doğal güzelliği geleneksel tekne turu ruhuyla birleştiren popüler bir Göcek koyu.",
+          badges: ["Doğa", "Göcek"],
+          duration: "6-7 Saat",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Bedri Rahmi Bay Göcek private boat tour"
+        },
+        {
+          title: "Kelebekler Vadisi",
+          description:
+            "Yüksek kayalıklarla çevrili dramatik kıyı görünümüyle Ölüdeniz bölgesinden tekneyle ulaşılan ikonik bir durak.",
+          badges: ["Doğa", "İkonik Durak"],
+          duration: "7-8 Saat",
+          image: "/images/home/route-faralya.svg",
+          imageAlt: "Butterfly Valley private boat tour stop"
+        },
+        {
+          title: "Gemiler Adası",
+          description:
+            "Özel tekne turlarına tarihi ve gün batımı odaklı bir dokunuş katabilen manzaralı bir ada rotası.",
+          badges: ["Tarih", "Gün Batımı"],
+          duration: "7-8 Saat",
+          image: "/images/private-tour-boat.png",
+          imageAlt: "Gemiler Island private boat tour near Fethiye"
+        }
+      ]
+    },
+    privateTourCta: {
+      title: "Emirs Transfer ile Özel Turunuzu Planlayın",
+      text:
+        "Gitmek istediğiniz noktaları bize iletin; otelden alış, özel ulaşım ve esnek zamanlama ile konforlu bir rota oluşturmanıza yardımcı olalım.",
+      button: "WhatsApp ile Planla",
+      whatsappMessage:
+        "Merhaba, Emirs Transfer ile özel bir tur planlamak istiyorum. Otelden alış ve esnek zamanlama ile rota oluşturmama yardımcı olur musunuz?"
+    }
+  }
+} as const;
+
 export const dictionaries = {
   en: {
     site: siteDictionaries.en,
@@ -231,20 +464,23 @@ export const dictionaries = {
       text: "Alongside VIP transfer, explore private minibus city tours and private boat rental options.",
       minibusTour: {
         title: "Minibus City Tour",
-        subtitle: "Private minibus tours",
+        subtitle: "Private chauffeured tour",
         description:
           "Explore Fethiye, Oludeniz, Gocek, Kas and nearby popular destinations with comfortable Mercedes-Benz Sprinter vehicles.",
+        ...otherServicesExperience.en.minibusTour,
         cta: "Contact on WhatsApp",
         whatsappMessage: "Hello, I would like to get information about the Minibus City Tour."
       },
       boatRental: {
         title: "Private Tour Boat Rental",
-        subtitle: "Private sea tours",
+        subtitle: "Private boat tour",
         description:
           "Enjoy a private boat experience with flexible routes, beautiful bays, and a comfortable sea tour plan.",
+        ...otherServicesExperience.en.boatRental,
         cta: "Contact on WhatsApp",
         whatsappMessage: "Hello, I would like to get information about Private Tour Boat Rental."
-      }
+      },
+      privateTourCta: otherServicesExperience.en.privateTourCta
     },
     services: [
       {
@@ -590,20 +826,23 @@ export const dictionaries = {
       text: "VIP transfer hizmetimize ek olarak özel şehir turu ve tekne kiralama seçenekleri sunuyoruz.",
       minibusTour: {
         title: "Minibüsle Şehir Turu",
-        subtitle: "Özel minibüs turları",
+        subtitle: "Özel şoförlü tur",
         description:
           "Fethiye, Ölüdeniz, Göcek, Kaş ve çevresindeki popüler noktaları konforlu Mercedes-Benz Sprinter araçlarla keşfedin.",
+        ...otherServicesExperience.tr.minibusTour,
         cta: "WhatsApp ile İletişime Geç",
         whatsappMessage: "Merhaba, Minibüsle Şehir Turu hakkında bilgi almak istiyorum."
       },
       boatRental: {
         title: "Özel Tur Teknesi Kiralama",
-        subtitle: "Özel deniz turu",
+        subtitle: "Özel tekne turu",
         description:
           "Size özel planlanabilen rota seçenekleriyle koyları ve deniz turu deneyimini konforlu şekilde yaşayın.",
+        ...otherServicesExperience.tr.boatRental,
         cta: "WhatsApp ile İletişime Geç",
         whatsappMessage: "Merhaba, Özel Tur Teknesi Kiralama hakkında bilgi almak istiyorum."
-      }
+      },
+      privateTourCta: otherServicesExperience.tr.privateTourCta
     },
     services: [
       {

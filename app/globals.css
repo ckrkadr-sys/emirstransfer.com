@@ -1843,6 +1843,11 @@ img {
   align-items: stretch;
 }
 
+.services-grid-rich {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
 .service-card {
   display: flex;
   min-height: 100%;
@@ -1941,6 +1946,66 @@ img {
   background: var(--color-gold-hover);
 }
 
+.service-showcase {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.38fr) minmax(0, 0.62fr);
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 77, 0.28);
+  border-radius: 20px;
+  background:
+    linear-gradient(120deg, #ffffff 0%, #ffffff 72%, rgba(244, 232, 207, 0.42) 100%),
+    #ffffff;
+  box-shadow: 0 16px 42px rgba(5, 7, 13, 0.08);
+}
+
+.service-showcase-media {
+  min-height: 660px;
+  background: var(--surface-soft);
+}
+
+.service-showcase-media img,
+.destination-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-showcase-minibusTour .service-showcase-media img {
+  object-position: 55% center;
+}
+
+.service-showcase-boatRental .service-showcase-media img {
+  object-position: 38% center;
+}
+
+.service-showcase-body {
+  display: grid;
+  align-content: start;
+  gap: 26px;
+  padding: clamp(24px, 3vw, 36px);
+}
+
+.service-showcase-intro h2 {
+  margin: 0;
+  color: var(--brand-dark);
+  font-size: clamp(1.45rem, 2.5vw, 2.15rem);
+  line-height: 1.16;
+}
+
+.service-showcase-intro p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.service-showcase-cta {
+  justify-self: start;
+  margin-top: 2px;
+}
+
 .services-page {
   min-height: 100vh;
   background: var(--surface-warm);
@@ -1974,6 +2039,86 @@ img {
 
 .services-page-hero .services-grid {
   margin-top: 42px;
+}
+
+.service-experience {
+  display: grid;
+  gap: 20px;
+}
+
+.service-experience-heading {
+  max-width: 800px;
+}
+
+.service-experience-heading h3 {
+  margin: 0;
+  color: var(--brand-dark);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1.18;
+}
+
+.service-experience-heading p {
+  margin: 12px 0 0;
+  color: var(--text-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.destination-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.destination-card {
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 12px 30px rgba(5, 7, 13, 0.07);
+}
+
+.destination-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.destination-duration {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid rgba(201, 162, 77, 0.36);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--gold-on-light);
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(5, 7, 13, 0.08);
+}
+
+.destination-content {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+}
+
+.destination-card h4 {
+  margin: 0;
+  color: var(--brand-dark);
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.destination-card p {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 14px;
+  line-height: 1.62;
 }
 
 .services-page-footer {
@@ -2313,6 +2458,70 @@ img {
 
 .route-detail-secondary-link:hover {
   color: #ffffff;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.about-copy-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.about-copy {
+  margin: 0;
+  color: var(--text-body);
+  font-size: 16px;
+  line-height: 1.78;
+}
+
+.about-closing {
+  margin: 6px 0 0;
+  border-left: 3px solid var(--color-gold);
+  border-radius: 12px;
+  background: var(--surface-soft);
+  color: var(--gold-on-light);
+  padding: 16px 18px;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.about-stat-panel {
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(11, 16, 26, 0.98), rgba(5, 7, 13, 0.94)),
+    var(--color-primary-dark);
+  color: #ffffff;
+  padding: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.about-stat-panel span {
+  display: inline-flex;
+  margin-bottom: 16px;
+  color: var(--color-gold);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.about-stat-panel strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  line-height: 1.12;
+}
+
+.about-stat-panel p {
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.68;
 }
 
 .fleet-section {
@@ -3301,6 +3510,23 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .services-grid-rich {
+    grid-template-columns: 1fr;
+  }
+
+  .service-showcase,
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .service-showcase-media {
+    min-height: 420px;
+  }
+
+  .destination-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .route-detail-grid {
     grid-template-columns: 1fr;
   }
@@ -3674,6 +3900,28 @@ img {
 
   .service-card {
     min-height: 0;
+  }
+
+  .service-showcase {
+    border-radius: 16px;
+  }
+
+  .service-showcase-media {
+    min-height: 340px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .service-showcase-body {
+    gap: 22px;
+    padding: 20px;
+  }
+
+  .destination-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-showcase-cta {
+    width: 100%;
   }
 
   .fleet-layout {

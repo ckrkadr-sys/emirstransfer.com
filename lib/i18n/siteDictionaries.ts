@@ -647,11 +647,19 @@ export const siteDictionaries = {
           "Emirs Transfer, Dalaman Havalimanı'ndan Fethiye, Ölüdeniz, Göcek, Marmaris ve çevresindeki otel bölgelerine özel VIP havalimanı transferleri sunar."
       },
       intro: {
-        eyebrow: "Misafir Odaklı Hizmet",
-        title: "Premium, güvenilir ve kolay rezervasyon",
-        text: "Uçuştan sonra önemli olan detaylara odaklanıyoruz: net fiyat, konforlu özel araçlar, hızlı iletişim ve direkt otel bırakışı.",
+        eyebrow: "Kurumsal VIP Transfer",
+        title: "Hakkımızda",
+        text:
+          "Emirs Transfer, Dalaman Havalimanı başta olmak üzere Fethiye, Göcek, Marmaris ve çevre bölgelerde konforlu, güvenli ve profesyonel VIP transfer hizmeti sunan bir ulaşım markasıdır.",
         copy:
-          "Ölüdeniz'de aile tatiline, Fethiye marinada konaklamaya, Faralya'da sakin bir kaçamağa veya Göcek'te resort transferine geliyor olun; deneyim kolay rezervasyon ve huzurlu varış üzerine kurulur."
+          "Misafirlerimize yalnızca bir noktadan diğerine ulaşım sağlamıyor; yolculuğun ilk anından itibaren güven, konfor ve ayrıcalık hissi yaşatmayı hedefliyoruz.",
+        paragraphs: [
+          "Emirs Transfer, Dalaman Havalimanı başta olmak üzere Fethiye, Göcek, Marmaris ve çevre bölgelerde konforlu, güvenli ve profesyonel VIP transfer hizmeti sunan bir ulaşım markasıdır.",
+          "Misafirlerimize yalnızca bir noktadan diğerine ulaşım sağlamıyor; yolculuğun ilk anından itibaren güven, konfor ve ayrıcalık hissi yaşatmayı hedefliyoruz. Modern ve bakımlı Mercedes-Benz Vito araçlarımız, deneyimli sürücülerimiz ve dakik hizmet anlayışımızla her transferi sorunsuz bir deneyime dönüştürüyoruz.",
+          "Emirs Transfer olarak önceliğimiz; misafirlerimizin zamanına değer veren, şeffaf fiyatlandırmaya sahip, kolay rezervasyon yapılabilen ve yüksek hizmet standartlarını koruyan bir transfer deneyimi sunmaktır. Havalimanı karşılamalarından otel transferlerine, özel yolculuklardan tatil ve iş seyahatlerine kadar her detayda profesyonel bir yaklaşım benimsiyoruz.",
+          "Yerel bölge bilgimiz, misafir memnuniyetine verdiğimiz önem ve güvenilir hizmet anlayışımızla, yolculuğunuzu konforlu ve stressiz hale getirmek için çalışıyoruz."
+        ],
+        closing: "Emirs Transfer ile seyahatiniz daha ilk adımda ayrıcalıklı başlar."
       },
       stat: {
         label: "Dalaman Havalimanı",

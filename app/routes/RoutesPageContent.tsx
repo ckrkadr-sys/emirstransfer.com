@@ -1,8 +1,6 @@
 "use client";
 
-import { CtaBand } from "../../components/CtaBand";
 import { FaqSection } from "../../components/FaqSection";
-import { PageHero } from "../../components/PageHero";
 import { PriceFinder } from "../../components/PriceFinder";
 import { PriceOverviewTable } from "../../components/PriceOverviewTable";
 import { RouteCard } from "../../components/RouteCard";
@@ -22,8 +20,6 @@ export function RoutesPageContent({ initialRouteId }: RoutesPageContentProps) {
 
   return (
     <main>
-      <PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} text={copy.hero.text} />
-
       <section className="section section-finder">
         <div className="container">
           <PriceFinder initialRouteId={initialRouteId} heading={copy.finderHeading} subheading={copy.finderText} />
@@ -44,7 +40,6 @@ export function RoutesPageContent({ initialRouteId }: RoutesPageContentProps) {
       <PriceOverviewTable allRoutes title={priceCopy.fullTitle} text={priceCopy.fullText} />
       <RouteHotelList />
       <FaqSection />
-      <CtaBand />
     </main>
   );
 }

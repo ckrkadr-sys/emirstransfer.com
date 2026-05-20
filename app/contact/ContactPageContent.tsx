@@ -1,8 +1,6 @@
 "use client";
 
 import { ContactBookingForm } from "../../components/ContactBookingForm";
-import { CtaBand } from "../../components/CtaBand";
-import { PageHero } from "../../components/PageHero";
 import { SectionHeading } from "../../components/SectionHeading";
 import { WhatsAppBrandIcon } from "../../components/WhatsAppBrandIcon";
 import { useI18n } from "../../lib/i18n/useI18n";
@@ -15,8 +13,6 @@ export function ContactPageContent() {
 
   return (
     <main>
-      <PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} text={copy.hero.text} />
-
       <section className="section section-white">
         <div className="container contact-layout">
           <div className="contact-panel">
@@ -50,8 +46,6 @@ export function ContactPageContent() {
           </div>
         </div>
       </section>
-
-      <CtaBand title={copy.ctaTitle} buttonLabel={copy.ctaButton} />
     </main>
   );
 }

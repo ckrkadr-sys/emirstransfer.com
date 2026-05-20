@@ -1,8 +1,6 @@
 "use client";
 
 import { BadgeCheck, Luggage, ShieldCheck, Sparkles, Users } from "lucide-react";
-import { CtaBand } from "../../components/CtaBand";
-import { PageHero } from "../../components/PageHero";
 import { VehicleOptions } from "../../components/VehicleOptions";
 import { useI18n } from "../../lib/i18n/useI18n";
 
@@ -14,7 +12,6 @@ export function FleetPageContent() {
 
   return (
     <main>
-      <PageHero eyebrow={copy.hero.eyebrow} title={copy.hero.title} text={copy.hero.text} />
       <VehicleOptions />
       <section className="section section-white">
         <div className="container fleet-note-grid">
@@ -39,7 +36,6 @@ export function FleetPageContent() {
           </article>
         </div>
       </section>
-      <CtaBand title={copy.ctaTitle} buttonLabel={copy.ctaButton} />
     </main>
   );
 }
